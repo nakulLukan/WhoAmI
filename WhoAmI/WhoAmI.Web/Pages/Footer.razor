@@ -1,0 +1,19 @@
+﻿@inject IJSRuntime jsruntime;
+<style>
+    canvas{
+        width: 100vw;
+        height: 100vh;
+    }
+</style>
+<canvas id="footer-canvas" ></canvas>
+@code {
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var jsreference = await jsruntime.InvokeAsync<IJSInProcessObjectReference>("import", "./js/babylonsharp.js");
+            await jsreference.InvokeVoidAsync("initialiseScene");
+        }
+    }
+}
