@@ -1,44 +1,69 @@
 ﻿@using WhoAmI.Web.Interfaces
 <style>
     nav {
-        background: #0082e6;
+        position: fixed;
         width: 100%;
         height: 80px;
-        position: fixed;
+    }
+    nav div{
+        background: #0082e6;
+        height: 100%;
     }
 
-        .blur {
-            display: none;
-            background: red;
-        }
+    .nav-container{
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        transition: width 0.5s;
+    }
 
-        nav .logo {
-            color: white;
-            font-size: 35px;
+    .nav-container-none {
+        width: 0%;
+        margin-left: auto;
+        margin-right: auto;
+        transition: width 0.5s;
+    }
+
+    .nav-container-center {
+        z-index: 1000;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        transition: width 0.5s;
+    }
+
+    .logo-3d{
+        width: auto;
+        height: 80px;
+    }
+
+    nav div .logo {
+        color: white;
+        font-size: 35px;
+        line-height: 80px;
+        font-weight: bold;
+    }
+
+    nav div ul {
+        float: right;
+        list-style: none;
+        margin-right: 10px;
+    }
+
+        nav div ul li {
+            display: inline;
             line-height: 80px;
-            font-weight: bold;
+            margin: 0 5px;
         }
 
-        nav ul {
-            float: right;
-            list-style: none;
-            margin-right: 10px;
-        }
-
-            nav ul li {
-                display: inline;
-                line-height: 80px;
-                margin: 0 5px;
+            nav div ul li a {
+                color: white;
+                font-size: 17px;
+                text-transform: uppercase;
+                border-radius: 3px;
+                padding: 7px 13px;
+                text-decoration: none;
             }
-
-                nav ul li a {
-                    color: white;
-                    font-size: 17px;
-                    text-transform: uppercase;
-                    border-radius: 3px;
-                    padding: 7px 13px;
-                    text-decoration: none;
-                }
 
     a.active, a:hover {
         transition: 0.5s;
@@ -52,19 +77,23 @@
         font-weight: bold;
     }
 </style>
-<nav class="@navClass">
-    <label class="logo">Logo</label>
-    <ul>
-        <li>
-            <a class=@(IsActiveMenu(MenuItem.Work) ? "active" : string.Empty)
-               href="#" @onclick="@(()=> MenuItemClick(MenuItem.Work))">Work</a>
-        </li>
+<nav>
+    <div class=@navClass>
+        @*<label class="logo">Logo</label>*@
+        <Babylon Class="logo-3d" Id="nav-canvas" AssetName="suzane"></Babylon>
+        <ul>
+            <li>
+                <a class=@(IsActiveMenu(MenuItem.Work) ? "active" : string.Empty)
+                   href="#" @onclick="@(()=> MenuItemClick(MenuItem.Work))">Work</a>
+            </li>
 
-        <li>
-            <a class=@(IsActiveMenu(MenuItem.About) ? "active" : string.Empty)
-               href="#" @onclick="@(()=> MenuItemClick(MenuItem.About))">About</a>
-        </li>
-    </ul>
+            <li>
+                <a class=@(IsActiveMenu(MenuItem.About) ? "active" : string.Empty)
+                   href="#" @onclick="@(()=> MenuItemClick(MenuItem.About))">About</a>
+            </li>
+        </ul>
+    </div>
+
 </nav>
 
 @code {
@@ -94,20 +123,31 @@
         return menuItem == selectdMenuItem;
     }
 
+    private int lastScrollTopValue = 0;
     [JSInvokable]
     public async Task OnScroll()
     {
-        if (await browserService.GetBodyScrollTop() > 10
-            || await browserService.GetElementScrollTop() > 10)
+        var (bodyScrollTopTask, elementScrollTopTask) = (browserService.GetBodyScrollTop(), browserService.GetElementScrollTop());
+        _ = await Task.WhenAll(bodyScrollTopTask, elementScrollTopTask);
+        int scrollValue = Math.Max(bodyScrollTopTask.Result, elementScrollTopTask.Result);
+
+        if (scrollValue > 20 && lastScrollTopValue < scrollValue)
         {
-            navClass = "blur";
+            navClass = "nav-container-none";
+            StateHasChanged();
         }
-        else
+        else if (scrollValue < lastScrollTopValue && scrollValue >20)
         {
-            navClass = string.Empty;
+            navClass = "nav-container-center";
+            StateHasChanged();
+        }
+        else if (scrollValue < lastScrollTopValue)
+        {
+            navClass = "nav-container";
+            StateHasChanged();
         }
 
-        StateHasChanged();
+        lastScrollTopValue = scrollValue;
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
