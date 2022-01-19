@@ -5,6 +5,8 @@
         height: 100vh;
     }
 </style>
+<button @onclick="CallThis">Hello world</button>
+<button @onclick="ClickMe">Click me now</button>
 <canvas id="footer-canvas" ></canvas>
 @code {
 
@@ -12,8 +14,19 @@
     {
         if (firstRender)
         {
-            var jsreference = await jsruntime.InvokeAsync<IJSInProcessObjectReference>("import", "./js/babylonsharp.js");
-            await jsreference.InvokeVoidAsync("initialiseScene");
+            //var temp = await jsruntime.InvokeAsync<IJSRuntime>("newClass");
+            //await temp.InvokeVoidAsync("callThisMethod");
         }
+    }
+
+    public async Task CallThis()
+    {
+        var temp = await jsruntime.InvokeAsync<IJSObjectReference>("import", "./js/babylonsharp.js");
+        await temp.InvokeVoidAsync("initialiseScene");
+    }
+
+    public async Task ClickMe()
+    {
+        var temp1 = await jsruntime.InvokeAsync<IJSObjectReference>("import", "./js/sahrp2.js");
     }
 }

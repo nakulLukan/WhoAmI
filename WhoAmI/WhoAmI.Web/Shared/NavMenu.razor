@@ -1,39 +1,121 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">WhoAmI.Web</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</div>
+﻿@using WhoAmI.Web.Interfaces
+<style>
+    nav {
+        background: #0082e6;
+        width: 100%;
+        height: 80px;
+        position: fixed;
+    }
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </div>
-    </nav>
-</div>
+        .blur {
+            display: none;
+            background: red;
+        }
+
+        nav .logo {
+            color: white;
+            font-size: 35px;
+            line-height: 80px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            float: right;
+            list-style: none;
+            margin-right: 10px;
+        }
+
+            nav ul li {
+                display: inline;
+                line-height: 80px;
+                margin: 0 5px;
+            }
+
+                nav ul li a {
+                    color: white;
+                    font-size: 17px;
+                    text-transform: uppercase;
+                    border-radius: 3px;
+                    padding: 7px 13px;
+                    text-decoration: none;
+                }
+
+    a.active, a:hover {
+        transition: 0.5s;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        color: white;
+    }
+
+    a.active {
+        color: white;
+        font-weight: bold;
+    }
+</style>
+<nav class="@navClass">
+    <label class="logo">Logo</label>
+    <ul>
+        <li>
+            <a class=@(IsActiveMenu(MenuItem.Work) ? "active" : string.Empty)
+               href="#" @onclick="@(()=> MenuItemClick(MenuItem.Work))">Work</a>
+        </li>
+
+        <li>
+            <a class=@(IsActiveMenu(MenuItem.About) ? "active" : string.Empty)
+               href="#" @onclick="@(()=> MenuItemClick(MenuItem.About))">About</a>
+        </li>
+    </ul>
+</nav>
 
 @code {
-    private bool collapseNavMenu = true;
+    [Inject]
+    IJSRuntime jsrunTime { get; set; }
 
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    [Inject]
+    IBrowserService browserService { get; set; }
 
-    private void ToggleNavMenu()
+    enum MenuItem
     {
-        collapseNavMenu = !collapseNavMenu;
+        Work,
+        About
+    }
+
+    private MenuItem selectdMenuItem = MenuItem.Work;
+    private string navClass = string.Empty;
+
+    private void MenuItemClick(MenuItem menuItem)
+    {
+        selectdMenuItem = menuItem;
+        StateHasChanged();
+    }
+
+    private bool IsActiveMenu(MenuItem menuItem)
+    {
+        return menuItem == selectdMenuItem;
+    }
+
+    [JSInvokable]
+    public async Task OnScroll()
+    {
+        if (await browserService.GetBodyScrollTop() > 10
+            || await browserService.GetElementScrollTop() > 10)
+        {
+            navClass = "blur";
+        }
+        else
+        {
+            navClass = string.Empty;
+        }
+
+        StateHasChanged();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var objRev = DotNetObjectReference.Create(this);
+            await jsrunTime.InvokeVoidAsync("setOnScroll", objRev, nameof(OnScroll));
+        }
     }
 }

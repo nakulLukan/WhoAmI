@@ -1,10 +1,9 @@
-﻿import '../modules/babylonjs/babylon.js'
+﻿import '../lib/babylonjs/babylon.js'
 
 export function initialiseScene() {
     const canvas = document.getElementById("footer-canvas");
     const engine = new BABYLON.Engine(canvas, true);
     const createScene = function () {
-
         const scene = new BABYLON.Scene(engine);
 
         BABYLON.SceneLoader.ImportMeshAsync("", "../assets/", "cude.babylon");

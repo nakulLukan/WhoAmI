@@ -4,7 +4,7 @@
   "libraries": [
     {
       "library": "babylonjs@4.2.1",
-      "destination": "wwwroot/modules/babylonjs/"
+      "destination": "wwwroot/lib/babylonjs/"
     }
   ]
 }
