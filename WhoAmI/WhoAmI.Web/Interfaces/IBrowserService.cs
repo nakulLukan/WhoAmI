@@ -5,12 +5,12 @@ public interface IBrowserService
     /// Get document body scroll top level
     /// </summary>
     /// <returns></returns>
-    Task<int> GetBodyScrollTop();
+    Task<T> GetBodyScrollTop<T>();
 
     /// <summary>
     /// Get document element scroll top level
     /// </summary>
     /// <returns></returns>
-    Task<int> GetElementScrollTop();
+    Task<T> GetElementScrollTop<T>();
 
 }

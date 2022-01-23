@@ -1,6 +1,6 @@
 ﻿function setOnScroll(dotnet, methodName) {
-    window.onscroll = async function () {
-        await dotnet.invokeMethodAsync(methodName);
+    window.onscroll = function () {
+        dotnet.invokeMethodAsync(methodName);
     };
 }
 

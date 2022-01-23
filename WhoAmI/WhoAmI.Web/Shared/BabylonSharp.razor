@@ -1,0 +1,26 @@
+﻿@inject IJSRuntime jsruntime
+<style>
+    canvas{
+        outline: none;
+    }
+</style>
+<canvas id="@Id" class="@Class"></canvas>
+@code {
+    [Parameter]
+    public string Id { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Class { get; set; } = string.Empty;
+
+    [Parameter]
+    public string AssetName { get; set; } = string.Empty;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var script = await jsruntime.InvokeAsync<IJSInProcessObjectReference>("import", "./js/babylonsharp.js");
+            script.InvokeVoid("initialiseScene", Id, AssetName);
+        }
+    }
+}

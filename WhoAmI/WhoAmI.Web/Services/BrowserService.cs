@@ -16,17 +16,17 @@ public class BrowserService : IBrowserService
     /// Get document body scroll top level
     /// </summary>
     /// <returns></returns>
-    public async Task<int> GetBodyScrollTop()
+    public async Task<T> GetBodyScrollTop<T>()
     {
-        return await jsRuntime.InvokeAsync<int>("getDocumentBodyScrollTop");
+        return await jsRuntime.InvokeAsync<T>("getDocumentBodyScrollTop");
     }
 
     /// <summary>
     /// Get document element scroll top level
     /// </summary>
     /// <returns></returns>
-    public async Task<int> GetElementScrollTop()
+    public async Task<T> GetElementScrollTop<T>()
     {
-        return await jsRuntime.InvokeAsync<int>("getDocumentElementScrollTop");
+        return await jsRuntime.InvokeAsync<T>("getDocumentElementScrollTop");
     }
 }

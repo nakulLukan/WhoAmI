@@ -1,16 +1,26 @@
 ﻿@using WhoAmI.Web.Interfaces
+@inject NavigationManager NavigationManager
 <style>
+    h1 {
+        position: fixed;
+    }
+
     nav {
+        top: 0px;
         position: fixed;
         width: 100%;
         height: 80px;
     }
-    nav div{
-        background: #0082e6;
-        height: 100%;
-    }
 
-    .nav-container{
+        nav div {
+            height: 100%;
+            overflow: hidden;
+            background: #333333;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+    .nav-container {
         width: 100%;
         margin-left: auto;
         margin-right: auto;
@@ -32,9 +42,14 @@
         transition: width 0.5s;
     }
 
-    .logo-3d{
+    .logo-3d {
         width: auto;
         height: 80px;
+        cursor: grab;
+    }
+
+    .logo-3d:active{
+        cursor: grabbing;
     }
 
     nav div .logo {
@@ -47,7 +62,7 @@
     nav div ul {
         float: right;
         list-style: none;
-        margin-right: 10px;
+        margin: 0px;
     }
 
         nav div ul li {
@@ -63,6 +78,7 @@
                 border-radius: 3px;
                 padding: 7px 13px;
                 text-decoration: none;
+                cursor: pointer;
             }
 
     a.active, a:hover {
@@ -79,23 +95,20 @@
 </style>
 <nav>
     <div class=@navClass>
-        @*<label class="logo">Logo</label>*@
-        <Babylon Class="logo-3d" Id="nav-canvas" AssetName="suzane"></Babylon>
+        <BabylonSharp Class="logo-3d" Id="nav-canvas" AssetName="suzane.babylon"></BabylonSharp>
         <ul>
             <li>
                 <a class=@(IsActiveMenu(MenuItem.Work) ? "active" : string.Empty)
-                   href="#" @onclick="@(()=> MenuItemClick(MenuItem.Work))">Work</a>
+                   @onclick="@(()=> MenuItemClick(MenuItem.Work))">Work</a>
             </li>
 
             <li>
                 <a class=@(IsActiveMenu(MenuItem.About) ? "active" : string.Empty)
-                   href="#" @onclick="@(()=> MenuItemClick(MenuItem.About))">About</a>
+                   @onclick="@(()=> MenuItemClick(MenuItem.About))">About</a>
             </li>
         </ul>
     </div>
-
 </nav>
-
 @code {
     [Inject]
     IJSRuntime jsrunTime { get; set; }
@@ -109,13 +122,28 @@
         About
     }
 
+    private const string NAV_CONTAINER_CLASS = "nav-container";
+    private const string NAV_CONTAINER_CENTER_CLASS = "nav-container-center";
+    private const string NAV_CONTAINER_NONE_CLASS = "nav-container-none";
+
     private MenuItem selectdMenuItem = MenuItem.Work;
-    private string navClass = string.Empty;
+    private string navClass = NAV_CONTAINER_CLASS;
 
     private void MenuItemClick(MenuItem menuItem)
     {
         selectdMenuItem = menuItem;
         StateHasChanged();
+        NavigationManager.NavigateTo(GetRouteByMenuItem(menuItem));
+    }
+
+    private string GetRouteByMenuItem(MenuItem menuItem)
+    {
+        switch (menuItem)
+        {
+            case MenuItem.Work: return string.Empty;
+            case MenuItem.About: return "about";
+            default: return string.Empty;
+        }
     }
 
     private bool IsActiveMenu(MenuItem menuItem)
@@ -124,29 +152,45 @@
     }
 
     private int lastScrollTopValue = 0;
+    private int lastShrinkScrollValue = 0;
+    private int scrollValue = 0;
+    private const int HOLD_SCROLL_LEVEL = 66;
     [JSInvokable]
     public async Task OnScroll()
     {
-        var (bodyScrollTopTask, elementScrollTopTask) = (browserService.GetBodyScrollTop(), browserService.GetElementScrollTop());
+        var (bodyScrollTopTask, elementScrollTopTask) = (browserService.GetBodyScrollTop<double>(),
+            browserService.GetElementScrollTop<double>());
         _ = await Task.WhenAll(bodyScrollTopTask, elementScrollTopTask);
-        int scrollValue = Math.Max(bodyScrollTopTask.Result, elementScrollTopTask.Result);
+        scrollValue = (int)Math.Max(bodyScrollTopTask.Result, elementScrollTopTask.Result);
 
-        if (scrollValue > 20 && lastScrollTopValue < scrollValue)
+        if ((scrollValue - lastShrinkScrollValue) > HOLD_SCROLL_LEVEL
+            && lastScrollTopValue < scrollValue)
         {
-            navClass = "nav-container-none";
-            StateHasChanged();
+            if (navClass != NAV_CONTAINER_NONE_CLASS)
+            {
+                navClass = NAV_CONTAINER_NONE_CLASS;
+                StateHasChanged();
+            }
         }
-        else if (scrollValue < lastScrollTopValue && scrollValue >20)
+        else if (scrollValue < lastScrollTopValue
+            && scrollValue > HOLD_SCROLL_LEVEL)
         {
-            navClass = "nav-container-center";
-            StateHasChanged();
+            lastShrinkScrollValue = scrollValue;
+            if (navClass != NAV_CONTAINER_CENTER_CLASS)
+            {
+                navClass = NAV_CONTAINER_CENTER_CLASS;
+                StateHasChanged();
+            }
         }
         else if (scrollValue < lastScrollTopValue)
         {
-            navClass = "nav-container";
-            StateHasChanged();
+            lastShrinkScrollValue = scrollValue;
+            if (navClass != NAV_CONTAINER_CLASS)
+            {
+                navClass = NAV_CONTAINER_CLASS;
+                StateHasChanged();
+            }
         }
-
         lastScrollTopValue = scrollValue;
     }
 
