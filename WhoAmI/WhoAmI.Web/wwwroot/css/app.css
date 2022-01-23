@@ -12,6 +12,37 @@ html, body {
     body::-webkit-scrollbar {
         display: none;
     }
+.loader {
+    margin-top: -80px;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction: column;
+}
+    .loader h1 {
+        color: #55B155;
+        margin-top: 30px;
+    }
+    .loader div {
+        border: 16px solid white;
+        border-top: 16px solid #55B155;
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: loader-spin 0.5s linear infinite;
+    }
+
+    @keyframes loader-spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+}
 
 h1:focus {
     outline: none;
