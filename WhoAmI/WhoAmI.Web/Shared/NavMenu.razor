@@ -98,13 +98,11 @@
         <BabylonSharp Class="logo-3d" Id="nav-canvas" AssetName="suzane.babylon"></BabylonSharp>
         <ul>
             <li>
-                <a class=@(IsActiveMenu(MenuItem.Work) ? "active" : string.Empty)
-                   @onclick="@(()=> MenuItemClick(MenuItem.Work))">Work</a>
+                <NavLink href="" Match=@NavLinkMatch.All>Work</NavLink>
             </li>
 
             <li>
-                <a class=@(IsActiveMenu(MenuItem.About) ? "active" : string.Empty)
-                   @onclick="@(()=> MenuItemClick(MenuItem.About))">About</a>
+                <NavLink href="about">About</NavLink>
             </li>
         </ul>
     </div>
@@ -116,40 +114,11 @@
     [Inject]
     IBrowserService browserService { get; set; }
 
-    enum MenuItem
-    {
-        Work,
-        About
-    }
-
     private const string NAV_CONTAINER_CLASS = "nav-container";
     private const string NAV_CONTAINER_CENTER_CLASS = "nav-container-center";
     private const string NAV_CONTAINER_NONE_CLASS = "nav-container-none";
 
-    private MenuItem selectdMenuItem = MenuItem.Work;
     private string navClass = NAV_CONTAINER_CLASS;
-
-    private void MenuItemClick(MenuItem menuItem)
-    {
-        selectdMenuItem = menuItem;
-        StateHasChanged();
-        NavigationManager.NavigateTo(GetRouteByMenuItem(menuItem));
-    }
-
-    private string GetRouteByMenuItem(MenuItem menuItem)
-    {
-        switch (menuItem)
-        {
-            case MenuItem.Work: return string.Empty;
-            case MenuItem.About: return "about";
-            default: return string.Empty;
-        }
-    }
-
-    private bool IsActiveMenu(MenuItem menuItem)
-    {
-        return menuItem == selectdMenuItem;
-    }
 
     private int lastScrollTopValue = 0;
     private int lastShrinkScrollValue = 0;

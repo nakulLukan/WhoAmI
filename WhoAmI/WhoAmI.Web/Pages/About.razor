@@ -1,4 +1,7 @@
 ﻿@page "/about"
+@using WhoAmI.Web.Interfaces
+@inject IApiService apiService
+
 <style>
     .my-details-container{
         padding: 80px;
@@ -15,13 +18,19 @@
      }
 </style>
 <div class="container my-details-container">
-    <div class="my-name-hi">
+    <div class="my-name-hi fade-in">
         Hi, I am
     </div>
     <div>
-        <h2 class="my-name">Nakul A.</h2>
+        <h2 class="my-name fade-in">@personName.</h2>
     </div>
 </div>
 @code {
+    private string personName;
 
+    protected override async Task OnInitializedAsync()
+    {
+        var personData = await apiService.Get<Person>("personal-info.json");
+        personName = personData.Name;
+    }
 }
