@@ -10,11 +10,20 @@
         color: #D09A49;
         font-size: 20px;
         margin-bottom: -15px;
+        opacity: 0;
     }
     .my-name{
         color: #ccd6f6;
         font-size: 100px;
         font-weight: bold;
+        opacity: 0;
+     }
+
+     .my-description{
+        color: #6A6E7C;
+        font-size: 50px;
+        font-weight: bold;
+        opacity: 0;
      }
 </style>
 <div class="container my-details-container">
@@ -22,15 +31,20 @@
         Hi, I am
     </div>
     <div>
-        <h2 class="my-name fade-in">@personName.</h2>
+        <h2 class="my-name fade-in fade-in-1">@personName.</h2>
+    </div>
+    <div>
+        <h3 class="my-description fade-in fade-in-2">@personDescription</h3>
     </div>
 </div>
 @code {
     private string personName;
+    private string personDescription;
 
     protected override async Task OnInitializedAsync()
     {
         var personData = await apiService.Get<Person>("personal-info.json");
         personName = personData.Name;
+        personDescription = personData.Description;
     }
 }

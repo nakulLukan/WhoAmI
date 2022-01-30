@@ -44,13 +44,6 @@ html, body {
         }
     }
 
-.fade-in {
-    animation: fadeIn 5s;
-    -webkit-animation: fadeIn 5s;
-    -moz-animation: fadeIn 5s;
-    -o-animation: fadeIn 5s;
-}
-
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -60,6 +53,21 @@ html, body {
         opacity: 1;
     }
 }
+
+.fade-in {
+    animation-name: fadeIn;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+
+.fade-in-1 {
+    animation-delay: 1s;
+}
+
+.fade-in-2 {
+    animation-delay: 2s;
+}
+
 
 h1:focus {
     outline: none;
