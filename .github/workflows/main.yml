@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.0.0
-      - name: Setup .NET SDK 6.0.2
+      - name: Setup .NET SDK 6.0
         uses: actions/setup-dotnet@v2.0.0
         with:
-          dotnet-version: 6.0.2
+          dotnet-version: 6.0
       - name: Publish .NET Core project
         run: dotnet publish WhoAmI/WhoAmI.Web/WhoAmI.Web.csproj -c Release -o release --nologo
       - name: Commit wwwroot to Github Pages
