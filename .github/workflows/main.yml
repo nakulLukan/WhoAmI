@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3.0.0
       - name: Setup .NET SDK 6.0
-        uses: actions/setup-dotnet@v2.0.0
+        uses: actions/setup-dotnet@v1.2.*
         with:
           dotnet-version: 6.0
       - name: Publish .NET Core project
