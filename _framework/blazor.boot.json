@@ -57,7 +57,7 @@
       "System.Text.Encodings.Web.dll": "sha256-rzFuMXwq2ZVLfojxA8YTR2Xwk9cIdpBRQwD7kKsSp0Y=",
       "System.Text.Json.dll": "sha256-rdIqUsYa\/CDm7KvucLC4Sz6x\/93h1nZW34\/0KBfpCx0=",
       "System.Text.RegularExpressions.dll": "sha256-A9IMc6vXImz0szrgp0cZfr8UnU9PcvpWozdhPngXbfE=",
-      "WhoAmI.Web.dll": "sha256-S7iAp2W2S8V1q53NeL86mS4psGPUXVvp22cWJuo68rQ="
+      "WhoAmI.Web.dll": "sha256-md\/SGx0L4id9ZDEKzxBR38Kg14Tr1ozWCPHaqUyjVEE="
     },
     "extensions": null,
     "lazyAssembly": null,
