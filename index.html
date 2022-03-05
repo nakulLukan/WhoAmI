@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Welcome</title>
+    <base href="/" />
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <link href="WhoAmI.Web.styles.css" rel="stylesheet" />
+    <link href="manifest.json" rel="manifest" />
+    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
+</head>
+
+<body>
+    <div id="app">
+        <div class="loader">
+            <svg viewBox="0 0 750 800">
+                <g stroke="#D09A49" stroke-width="15">
+                    <line x1="375" y1="124" x2="375" y2="124" >
+                        <animate attributeName="x2" values="539;539;375;539;539" dur="1s" repeatCount="indefinite" />
+                        <animate attributeName="y2" values="0;0;124;0;0" dur="1s" repeatCount="indefinite" />
+                    </line>
+
+                    <line x1="539" y1="0" x2="539" y2="0" >
+                        <animate attributeName="x2" values="631;631;539;631;631" dur="1s" repeatCount="indefinite" />
+                        <animate attributeName="y2" values="68;68;0;68;68" dur="1s" repeatCount="indefinite" />
+                    </line>
+
+                    <line x1="631" y1="68" x2="631" y2="68" >
+                        <animate attributeName="x2" values="750;750;631;750;750" dur="1s" repeatCount="indefinite" />
+                        <animate attributeName="y2" values="136;136;68;136;136" dur="1s" repeatCount="indefinite" />
+                    </line>
+
+                    <line x1="750" y1="136" x2="750" y2="136" >
+                        <animate attributeName="x2" values="690;690;750;690;690" dur="1s" repeatCount="indefinite" />
+                        <animate attributeName="y2" values="302;302;136;302;302" dur="1s" repeatCount="indefinite" />
+                    </line>
+
+                    <line x1="690" y1="302" x2="690" y2="302" >
+                        <animate attributeName="x2" values="453;453;690;453;453" dur="1s" repeatCount="indefinite" />
+                        <animate attributeName="y2" values="380;380;302;380;380" dur="1s" repeatCount="indefinite" />
+                    </line>
+
+                    <line x1="453" y1="380" x2="453" y2="380" >
+                        <animate attributeName="x2" values="503;503;453;503;503" dur="1s" repeatCount="indefinite" />
+                        <animate attributeName="y2" values="758;758;380;758;758" dur="1s" repeatCount="indefinite" />
+                    </line>
+
+                    <line x1="503" y1="758" x2="503" y2="758" >
+                        <animate attributeName="x2" values="375;375;503;375;375" begin="0.6s" dur="1s" repeatCount="indefinite" />
+                        <animate attributeName="y2" values="800;800;758;800;800" begin="0.6s" dur="1s" repeatCount="indefinite" />
+                    </line>
+
+                    <line x1="375" y1="124" x2="375" y2="124" >
+                        <animate attributeName="x2" values="211;211;375;211;211" dur="1s" repeatCount="indefinite" />
+                        <animate attributeName="y2" values="0;0;124;0;0" dur="1s" repeatCount="indefinite" />
+                    </line>
+
+                    <line x1="211" y1="0" x2="211" y2="0" >
+                        <animate attributeName="x2" values="119;119;211;119;119" dur="1s" repeatCount="indefinite" />
+                        <animate attributeName="y2" values="68;68;0;68;68" dur="1s" repeatCount="indefinite" />
+                    </line>
+
+                    <line x1="119" y1="68" x2="119" y2="68" >
+                        <animate attributeName="x2" values="0;0;119;0;0" dur="1s" repeatCount="indefinite" />
+                        <animate attributeName="y2" values="136;136;68;136;136" dur="1s" repeatCount="indefinite" />
+                    </line>
+
+                    <line x1="0" y1="136" x2="0" y2="136" >
+                        <animate attributeName="x2" values="60;60;0;60;60" dur="1s" repeatCount="indefinite" />
+                        <animate attributeName="y2" values="302;302;136;302;302" dur="1s" repeatCount="indefinite" />
+                    </line>
+
+                    <line x1="60" y1="302" x2="60" y2="302" >
+                        <animate attributeName="x2" values="297;297;60;297;297" dur="1s" repeatCount="indefinite" />
+                        <animate attributeName="y2" values="380;380;302;380;380" dur="1s" repeatCount="indefinite" />
+                    </line>
+
+                    <line x1="297" y1="380" x2="297" y2="380" >
+                        <animate attributeName="x2" values="247;247;297;247;247" dur="1s" repeatCount="indefinite" />
+                        <animate attributeName="y2" values="758;758;380;758;758" dur="1s" repeatCount="indefinite" />
+                    </line>
+
+                    <line x1="247" y1="758" x2="247" y2="758" >
+                        <animate attributeName="x2" values="375;375;247;375;375" dur="1s" repeatCount="indefinite" />
+                        <animate attributeName="y2" values="800;800;758;800;800" dur="1s" repeatCount="indefinite" />
+                    </line>
+                </g>
+               
+            </svg>
+        </div>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script>navigator.serviceWorker.register('service-worker.js');</script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
