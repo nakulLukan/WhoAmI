@@ -1,0 +1,21 @@
+name: Deploy to Github Pages
+on:
+  push:
+    branches: [master]
+jobs:
+  deploy-to-github-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.0.0
+      - name: Setup .NET SDK 6.0.2
+        uses: actions/setup-dotnet@v2.0.0
+        with:
+          dotnet-version: 6.0.2
+      - name: Publish .NET Core project
+        run: dotnet publish WhoAmI/WhoAmI.Web/WhoAmI.Web.csproj -c Release -o release --nologo
+      - name: Commit wwwroot to Github Pages
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: release/wwwroot
