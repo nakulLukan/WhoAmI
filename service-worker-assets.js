@@ -329,7 +329,7 @@
       "url": "index.html"
     },
     {
-      "hash": "sha256-OGrSOUC+hbW0YhuYLGat3PnGAzKkDkENw3lytLlP58E=",
+      "hash": "sha256-4zsaLeR5jmfOTKE0A6mOfZjamK3jYcZktfp9YR2ILSE=",
       "url": "js\/babylonsharp.js"
     },
     {
@@ -365,5 +365,5 @@
       "url": "manifest.json"
     }
   ],
-  "version": "nV9HJ3xp"
+  "version": "JqRQd1i3"
 };
