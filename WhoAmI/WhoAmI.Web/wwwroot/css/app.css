@@ -63,6 +63,9 @@ html, body {
     animation-delay: 2s;
 }
 
+.fade-in-3 {
+    animation-delay: 3s;
+}
 
 h1:focus {
     outline: none;

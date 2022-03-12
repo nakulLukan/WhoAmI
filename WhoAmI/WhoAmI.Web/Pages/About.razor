@@ -24,6 +24,16 @@
         font-weight: bold;
         opacity: 0;
      }
+
+     .my-dp{
+         opacity: 0;
+         margin-top: 150px;
+         text-align: center;
+     }
+
+     .my-dp canvas{
+         height: 200px;
+     }
 </style>
 <div class="container my-details-container">
     <div class="my-name-hi fade-in">
@@ -35,15 +45,20 @@
     <div>
         <h3 class="my-description fade-in fade-in-2">@personDescription</h3>
     </div>
+    <div class="my-dp fade-in fade-in-3">
+        <BabylonSharp Id="display-picture" AssetName="@personDisplayPicture"></BabylonSharp>
+    </div>
 </div>
 @code {
     private string personName;
     private string personDescription;
+    private string personDisplayPicture;
 
     protected override async Task OnInitializedAsync()
     {
         var personData = await apiService.Get<Person>("personal-info.json");
         personName = personData.Name;
         personDescription = personData.Description;
+        personDisplayPicture = personData.DisplayPicture;
     }
 }

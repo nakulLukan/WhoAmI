@@ -21,6 +21,10 @@
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\images\" />
+  </ItemGroup>
+
   <!--<Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="npm run build" />
   </Target>-->

@@ -10,4 +10,9 @@ public class Person
     /// About the person
     /// </summary>
     public string Description { get; set; }
+
+    /// <summary>
+    /// Relative path to a model starting without '/'.
+    /// </summary>
+    public string DisplayPicture { get; set; }
 }
