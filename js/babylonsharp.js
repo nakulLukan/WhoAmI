@@ -10,7 +10,7 @@ export function initialiseScene(canvasElementName, assetName) {
     const createScene = function () {
         const scene = new BABYLON.Scene(engine);
         scene.clearColor = new BABYLON.Color3.FromHexString('#333333');
-        BABYLON.SceneLoader.ImportMeshAsync("", "./assets/", assetName);
+        BABYLON.SceneLoader.ImportMeshAsync("", "./assets/models/", assetName);
         const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 4, new BABYLON.Vector3(0, 0, 0));
         camera.attachControl(canvas, true);
         const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
