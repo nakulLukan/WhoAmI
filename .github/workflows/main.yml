@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
 jobs:
-  build-game:
+  deploy-to-github-pages:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.0.0
@@ -16,11 +16,8 @@ jobs:
           relative_project_path: ./WhoAmI/godot/WhoAmI.Interactive/
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  deploy-to-github-pages:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3.0.0
-      
+      - name: List all files after building game
+        run: ls -a
       - name: Setup .NET SDK 6.0
         uses: actions/setup-dotnet@v1
         with:
