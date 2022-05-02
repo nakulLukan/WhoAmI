@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\assets\images\" />
+    <Folder Include="wwwroot\godot\HTML5\" />
   </ItemGroup>
 
   <!--<Target Name="PostBuild" AfterTargets="PostBuildEvent">
