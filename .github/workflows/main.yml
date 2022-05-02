@@ -7,18 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.0.0
-      - uses: firebelley/godot-export@v3.0.0
-        with:
-          # Defining all the required inputs
-          # I used the mono version of Godot in this example
-          godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/3.4.4/Godot_v3.4.4-stable_linux_headless.64.zip
-          godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/3.4.4/Godot_v3.4.4-stable_export_templates.tpz
-          relative_project_path: ./WhoAmI/godot/WhoAmI.Interactive/
-          relative_export_path: ./MyGame
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: List all files after building game
-        run: ls MyGame/HTML5 -a
       - name: Setup .NET SDK 6.0
         uses: actions/setup-dotnet@v1
         with:
@@ -33,6 +21,17 @@ jobs:
       - name: Add .nojekyll file
         run: touch release/wwwroot/.nojekyll
         
+      - uses: firebelley/godot-export@v3.0.0
+        with:
+          # Defining all the required inputs
+          # I used the mono version of Godot in this example
+          godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/3.4.4/Godot_v3.4.4-stable_linux_headless.64.zip
+          godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/3.4.4/Godot_v3.4.4-stable_export_templates.tpz
+          relative_project_path: ./WhoAmI/godot/WhoAmI.Interactive/
+          relative_export_path: release/wwwroot/godot
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
       - name: Commit wwwroot to Github Pages
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
