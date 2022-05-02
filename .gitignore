@@ -348,3 +348,9 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# Godot
+WhoAmI/WhoAmI.Web/wwwroot/godot
+WhoAmI/godot/WhoAmI.Interactive/Release
+.mono
+WhoAmI/WhoAmI/.mono/*
