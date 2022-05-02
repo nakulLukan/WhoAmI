@@ -18,7 +18,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: List all files after building game
-        run: ls MyGame -a
+        run: ls MyGame/HTML5 -a
       - name: Setup .NET SDK 6.0
         uses: actions/setup-dotnet@v1
         with:
