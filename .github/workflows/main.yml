@@ -17,9 +17,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: List all files after building game
-        run: ls WhoAmI -a
-      - name: Again
-        run: ls WhoAmI/WhoAmI -a
+        run: ls WhoAmI/godot/WhoAmI.Interactive/Release -a
       - name: Setup .NET SDK 6.0
         uses: actions/setup-dotnet@v1
         with:
