@@ -309,6 +309,70 @@
       "url": "favicon.ico"
     },
     {
+      "hash": "sha256-LH09TmmH5aCiaxqY4ed2veKdWqVzx7ak141OVRT9eX4=",
+      "url": "godot\/HTML5\/index.144x144.png"
+    },
+    {
+      "hash": "sha256-jd\/KXQV1OHtBLBy89sLhHhpT8fPxPadvQTa70EqyJCw=",
+      "url": "godot\/HTML5\/index.144x144.png.import"
+    },
+    {
+      "hash": "sha256-q8MMS79Wp7usLHrxJcsiHKr2qh\/8IEtCotIScZuIUeo=",
+      "url": "godot\/HTML5\/index.180x180.png"
+    },
+    {
+      "hash": "sha256-cokmwKNDIAbGVKgYoH9y1iKNTFpHVzNxbpFo0S3SNq0=",
+      "url": "godot\/HTML5\/index.180x180.png.import"
+    },
+    {
+      "hash": "sha256-MAAfIu+9M4XGMfwLaYEXzmsI+gfJU+egGGgf6YLnl0E=",
+      "url": "godot\/HTML5\/index.512x512.png"
+    },
+    {
+      "hash": "sha256-GNec4LGG\/DHHyXVkN3xIYY1h4P6jT\/LwcPxGDCEtTa0=",
+      "url": "godot\/HTML5\/index.512x512.png.import"
+    },
+    {
+      "hash": "sha256-Yi0\/P7gnQtRjo4TCda9efXphFk8daXbEVDiRruiRZ\/Q=",
+      "url": "godot\/HTML5\/index.audio.worklet.js"
+    },
+    {
+      "hash": "sha256-E+obLsxz8iaRN9ZS0C5mC8OanpX2xqgijSyxUme9jLQ=",
+      "url": "godot\/HTML5\/index.html"
+    },
+    {
+      "hash": "sha256-fPTnTsf3mySHdK4O05ednfvG+t8pBmWyiZBf30FTeU0=",
+      "url": "godot\/HTML5\/index.js"
+    },
+    {
+      "hash": "sha256-tviH3y0mlLtl1LDubhjObm4tW0DwI4E\/9BcNZ5bWQLo=",
+      "url": "godot\/HTML5\/index.manifest.json"
+    },
+    {
+      "hash": "sha256-r50qWtMx\/P7A4KKHQ5AReeM2ZJUg7\/RDGAWVmU3rUiI=",
+      "url": "godot\/HTML5\/index.offline.html"
+    },
+    {
+      "hash": "sha256-c5lSUoW+ysFRt+McvCv1vVUNP43vkcplZpu8fvXbGs4=",
+      "url": "godot\/HTML5\/index.pck"
+    },
+    {
+      "hash": "sha256-PLRJXAuY375LZjy\/K2g2RzVyM5vrZtkCNniTFipwvg4=",
+      "url": "godot\/HTML5\/index.png"
+    },
+    {
+      "hash": "sha256-RnH0OIlwMXbnujvIH7o11VR4LgYDcYykFFLv8U1mymw=",
+      "url": "godot\/HTML5\/index.png.import"
+    },
+    {
+      "hash": "sha256-6UVMweR7DVmt5WNgC50VFTDOSlrQm8hsdiT\/PD+WAYc=",
+      "url": "godot\/HTML5\/index.service.worker.js"
+    },
+    {
+      "hash": "sha256-+RzCOhDC7XGfm6ujBBA6zybBSjN3WDzR0kJGlWz\/5kA=",
+      "url": "godot\/HTML5\/index.wasm"
+    },
+    {
       "hash": "sha256-DbpQaq68ZSb5IoPosBErM1QWBfsbTxpJqhU0REi6wP4=",
       "url": "icon-192.png"
     },
@@ -357,5 +421,5 @@
       "url": "manifest.json"
     }
   ],
-  "version": "VK6Pbhka"
+  "version": "mIg3R543"
 };
