@@ -21,16 +21,16 @@ jobs:
       - name: Add .nojekyll file
         run: touch release/wwwroot/.nojekyll
         
-      - uses: firebelley/godot-export@v3.0.0
-        with:
-          # Defining all the required inputs
-          # I used the mono version of Godot in this example
-          godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/3.4.4/Godot_v3.4.4-stable_linux_headless.64.zip
-          godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/3.4.4/Godot_v3.4.4-stable_export_templates.tpz
-          relative_project_path: ./WhoAmI/godot/WhoAmI.Interactive/
-          relative_export_path: release/wwwroot/godot
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - uses: firebelley/godot-export@v3.0.0
+        # with:
+          # # Defining all the required inputs
+          # # I used the mono version of Godot in this example
+          # godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/3.4.4/Godot_v3.4.4-stable_linux_headless.64.zip
+          # godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/3.4.4/Godot_v3.4.4-stable_export_templates.tpz
+          # relative_project_path: ./WhoAmI/godot/WhoAmI.Interactive/
+          # relative_export_path: release/wwwroot/godot
+        # env:
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
        
       - name: Change base tag in index.html from '/godot/HTML5/' to '/WhoAmI/godot/HTML5/' to match Github Pages repository subdirectory
         run: sed -i 's/<base href="\/godot\/HTML5\/" \/>/<base href="\/WhoAmI\/godot\/HTML5\/" \/>/g' release/wwwroot/godot/HTML5/index.html
