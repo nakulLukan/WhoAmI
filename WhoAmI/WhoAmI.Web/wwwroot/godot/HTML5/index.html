@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns='http://www.w3.org/1999/xhtml' lang='' xml:lang=''>
 <head>
-	<base href="/godot/HTML5/" />
 	<meta charset='utf-8' />
 	<meta name='viewport' content='width=device-width, user-scalable=no' />
 	<title>Who Am I. Interactive</title>
@@ -22,9 +21,9 @@
 			color: white;
 		}
 
-			#canvas:focus {
-				outline: none;
-			}
+		#canvas:focus {
+			outline: none;
+		}
 
 		.godot {
 			font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
@@ -85,47 +84,24 @@
 			position: relative;
 		}
 
-			#status-indeterminate > div {
-				width: 4.5px;
-				height: 0;
-				border-style: solid;
-				border-width: 9px 3px 0 3px;
-				border-color: #2b2b2b transparent transparent transparent;
-				transform-origin: center 21px;
-				position: absolute;
-			}
+		#status-indeterminate > div {
+			width: 4.5px;
+			height: 0;
+			border-style: solid;
+			border-width: 9px 3px 0 3px;
+			border-color: #2b2b2b transparent transparent transparent;
+			transform-origin: center 21px;
+			position: absolute;
+		}
 
-				#status-indeterminate > div:nth-child(1) {
-					transform: rotate( 22.5deg);
-				}
-
-				#status-indeterminate > div:nth-child(2) {
-					transform: rotate( 67.5deg);
-				}
-
-				#status-indeterminate > div:nth-child(3) {
-					transform: rotate(112.5deg);
-				}
-
-				#status-indeterminate > div:nth-child(4) {
-					transform: rotate(157.5deg);
-				}
-
-				#status-indeterminate > div:nth-child(5) {
-					transform: rotate(202.5deg);
-				}
-
-				#status-indeterminate > div:nth-child(6) {
-					transform: rotate(247.5deg);
-				}
-
-				#status-indeterminate > div:nth-child(7) {
-					transform: rotate(292.5deg);
-				}
-
-				#status-indeterminate > div:nth-child(8) {
-					transform: rotate(337.5deg);
-				}
+		#status-indeterminate > div:nth-child(1) { transform: rotate( 22.5deg); }
+		#status-indeterminate > div:nth-child(2) { transform: rotate( 67.5deg); }
+		#status-indeterminate > div:nth-child(3) { transform: rotate(112.5deg); }
+		#status-indeterminate > div:nth-child(4) { transform: rotate(157.5deg); }
+		#status-indeterminate > div:nth-child(5) { transform: rotate(202.5deg); }
+		#status-indeterminate > div:nth-child(6) { transform: rotate(247.5deg); }
+		#status-indeterminate > div:nth-child(7) { transform: rotate(292.5deg); }
+		#status-indeterminate > div:nth-child(8) { transform: rotate(337.5deg); }
 
 		#status-notice {
 			margin: 0 100px;
@@ -135,9 +111,9 @@
 			visibility: visible;
 		}
 	</style>
-	<link rel='manifest' href='index.manifest.json'>
-	<script type='application/javascript'>window.addEventListener('load', () => {if ('serviceWorker' in navigator) {navigator.serviceWorker.register('index.service.worker.js');}});</script>
-
+<link rel='manifest' href='index.manifest.json'>
+<script type='application/javascript'>window.addEventListener('load', () => {if ('serviceWorker' in navigator) {navigator.serviceWorker.register('index.service.worker.js');}});</script>
+<base href="/godot/HTML5/" />
 </head>
 <body>
 	<canvas id='canvas'>
@@ -162,7 +138,7 @@
 	<script type='text/javascript' src='index.js'></script>
 	<script type='text/javascript'>//<![CDATA[
 
-		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":17964080,"index.wasm":17081267},"focusCanvas":true,"gdnativeLibs":[]};
+		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":29906480,"index.wasm":17081267},"focusCanvas":true,"gdnativeLibs":[]};
 		var engine = new Engine(GODOT_CONFIG);
 
 		(function() {
