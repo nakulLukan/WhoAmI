@@ -4,7 +4,7 @@ public static class Message
     static int lastAccessedPage = -1;
     public static IDictionary<int, string> DialogMessages = new Dictionary<int, string>(){
         { 1, "WELCOME...                     " },
-        { 2, "Please roam around to find more about me. 😎" }
+        { 2, "Please roam around to find more about me." }
     };
 
     public static string GetNextPageText(int pageNo){
