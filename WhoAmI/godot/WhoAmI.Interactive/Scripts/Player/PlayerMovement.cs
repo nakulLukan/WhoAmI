@@ -2,45 +2,64 @@ using Godot;
 using System;
 public class PlayerMovement : KinematicBody
 {
+    // Movement speed of the player
     public int Speed { get; set; } = 4;
+
+    // Rotation speed of the player
     public int RotationSpeed { get; set; } = 7;
-    public float PlayerActionTransitionSpeed { get; set; } = 0.1F;
 
+    // Player animation transition speed
+    public float PlayerActionTransitionSpeed { get; set; } = 0.3F;
 
-    private KinematicBody body;
+    #region Movement Keys
     private int forwardAction = 0;
     private int backwardAction = 0;
     private int leftAction = 0;
     private int rightAction = 0;
+    #endregion
+
+    // Player current animation
     private float currentAnimAction = 0;
+
+    // Player target animation
     private float playerTargetAnimAction = 0;
+
+    // Path to player movement animation tree blend parameter
     private const string ANIM_TREE_MOVEMENT_PARAM = "parameters/movement/blend_position";
 
+    // Reference to animation tree node of the player.
     AnimationTree animationTree;
+
+    // Reference to player node
     private Spatial player;
-    private Vector3 playerRotationDegrees;
-    private Vector3 playerTargetRotationDegrees;
+
+    // Player velocity
     Vector3 velocity = Vector3.Zero;
+
+    // User movement key input vector.
+    Vector3 input = Vector3.Zero;
+
+    // Player target rotation
+    Vector3 targetLookDir = Vector3.Zero;
+
+    // Player current rotation
+    Vector3 currentLookDir = Vector3.Zero;
 
     private Vector3 gravity = Vector3.Down * (float)ProjectSettings.GetSetting("physics/3d/default_gravity");
     public override void _Ready()
     {
-        body = this;
         player = GetNode("player") as Spatial;
-        playerRotationDegrees = player.RotationDegrees;
-        playerTargetRotationDegrees = playerRotationDegrees;
         animationTree = GetNode("player").GetNode("AnimationTree") as AnimationTree;
     }
 
     public override void _Process(float delta)
     {
-        playerRotationDegrees.y = Godot.Mathf.Rad2Deg(Godot.Mathf.LerpAngle(
-            Godot.Mathf.Deg2Rad(playerRotationDegrees.y), 
-            Godot.Mathf.Deg2Rad(playerTargetRotationDegrees.y),
-            RotationSpeed * delta));
-        player.RotationDegrees = playerRotationDegrees;
-
+        // Play run animation if any movement keys are pressed.
+        // 1 for run animation
+        // 0 for idle animation
         playerTargetAnimAction = Math.Min(1, forwardAction + backwardAction + leftAction + rightAction);
+
+        // Make the animation transition smooth using lerp()
         if (playerTargetAnimAction != currentAnimAction){
             currentAnimAction = Godot.Mathf.Lerp(currentAnimAction, playerTargetAnimAction, PlayerActionTransitionSpeed);
             animationTree.Set(ANIM_TREE_MOVEMENT_PARAM, currentAnimAction);
@@ -49,10 +68,28 @@ public class PlayerMovement : KinematicBody
 
     public override void _PhysicsProcess(float delta)
     {
+        // Get linear velocity of from the movement key press.
         velocity += gravity;
         velocity.x = (rightAction - leftAction) * Speed;
         velocity.z = (backwardAction - forwardAction) * Speed;
-        velocity = body.MoveAndSlide(velocity, Vector3.Up);
+        input.x = velocity.x;
+        input.z = velocity.z;
+
+        // Update player target roation only if any movement key (W,A,S or D) is pressed.
+        if(input.Length() > 0){
+            targetLookDir = Transform.Identity.LookingAt(Vector3.Zero - input.Normalized(), Vector3.Up).basis.GetEuler();
+        }
+        
+        // Update rotation till player current looking direction not equal to target looking direction.
+        if(currentLookDir != targetLookDir){
+            // Lerp the radians for smooth transition
+            currentLookDir.x = Godot.Mathf.LerpAngle(currentLookDir.x, targetLookDir.x, 0.3f);
+            currentLookDir.y = Godot.Mathf.LerpAngle(currentLookDir.y, targetLookDir.y, 0.3f);
+            player.Rotation = currentLookDir;
+        }
+        
+        // Move the kinematic body
+        velocity = MoveAndSlide(velocity, Vector3.Up);
     }
 
     public override void _Input(InputEvent @event)
@@ -61,36 +98,16 @@ public class PlayerMovement : KinematicBody
             bool isPressed = @event.IsPressed();
             switch((KeyList)eventKey.Scancode){
                 case KeyList.W:
-                    if(isPressed){
-                        forwardAction = 1;
-                        playerTargetRotationDegrees.y = 180;
-                    }else{
-                        forwardAction = 0;
-                    }
+                    forwardAction = isPressed ? 1 : 0;
                     break;
                 case KeyList.A:
-                    if(isPressed){
-                        leftAction = 1;
-                        playerTargetRotationDegrees.y = -90;
-                    }else{
-                        leftAction = 0;
-                    }
+                    leftAction = isPressed ? 1 : 0;
                     break;
                 case KeyList.S:
-                    if(isPressed){
-                        backwardAction = 1;
-                        playerTargetRotationDegrees.y = 0;
-                    }else{
-                        backwardAction = 0;
-                    }
+                    backwardAction = isPressed ? 1 : 0;
                     break;
                 case KeyList.D:
-                    if(isPressed){
-                        rightAction = 1;
-                        playerTargetRotationDegrees.y = 90;
-                    }else{
-                        rightAction = 0;
-                    }
+                    rightAction = isPressed ? 1 : 0;
                     break;
             }
         }
