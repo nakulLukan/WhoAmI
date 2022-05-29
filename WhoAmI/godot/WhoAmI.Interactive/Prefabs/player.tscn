@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Models/Player/player.glb" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Player/PlayerAction.cs" type="Script" id=2]
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "idle"
@@ -16,15 +17,16 @@ blend_point_1/pos = 1.0
 snap = 0.5
 
 [sub_resource type="AnimationNodeBlendTree" id=1]
-graph_offset = Vector2( -261.333, 68 )
-nodes/BlendSpace1D/node = SubResource( 4 )
-nodes/BlendSpace1D/position = Vector2( -53.3333, 133.333 )
-node_connections = [ "output", 0, "BlendSpace1D" ]
+graph_offset = Vector2( -293.333, 50.6667 )
+nodes/movement/node = SubResource( 4 )
+nodes/movement/position = Vector2( -53.3333, 133.333 )
+node_connections = [ "output", 0, "movement" ]
 
 [node name="player" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = SubResource( 1 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/BlendSpace1D/blend_position = -0.599462
+parameters/movement/blend_position = 0.0
