@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Dialogs/Dialog.cs" type="Script" id=1]
 [ext_resource path="res://StaticAssets/Fonts/SEGOEUI.TTF" type="DynamicFontData" id=2]
 [ext_resource path="res://Prefabs/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Player/PlayerMovement.cs" type="Script" id=4]
+[ext_resource path="res://Prefabs/car.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/Camera/PlayerCamFollow.cs" type="Script" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 21
@@ -13,35 +15,6 @@ font_data = ExtResource( 2 )
 [sub_resource type="CapsuleShape" id=6]
 radius = 0.5
 height = 3.9
-
-[sub_resource type="Environment" id=3]
-background_energy = 0.0
-ambient_light_color = Color( 0.305882, 0.278431, 0.278431, 1 )
-ambient_light_energy = 0.73
-fog_enabled = true
-fog_sun_amount = 0.07
-fog_depth_enabled = false
-fog_depth_curve = 0.535885
-fog_transmit_curve = 10.5561
-fog_height_min = 0.1
-fog_height_max = 1.0
-fog_height_curve = 25.1067
-auto_exposure_enabled = true
-auto_exposure_speed = 0.01
-ss_reflections_enabled = true
-ss_reflections_fade_in = 0.126134
-ssao_enabled = true
-dof_blur_far_enabled = true
-dof_blur_far_distance = 24.0
-dof_blur_near_enabled = true
-dof_blur_near_distance = 1.0
-glow_enabled = true
-glow_strength = 0.99
-glow_bloom = 1.0
-glow_hdr_scale = 2.89
-glow_bicubic_upscale = true
-glow_high_quality = true
-adjustment_enabled = true
 
 [sub_resource type="CylinderShape" id=7]
 height = 7.0
@@ -110,13 +83,14 @@ autostart = true
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.204735, 0.245324, -0.947576, 0, 0.968082, 0.250633, 0.978817, -0.0513135, 0.1982, 0, 1.73222, 0 )
+light_energy = 0.5
+light_indirect_energy = 0.5
+light_specular = 0.0
 shadow_enabled = true
-shadow_color = Color( 0.658824, 0.588235, 0.588235, 1 )
-shadow_bias = 0.0
 shadow_contact = 1.0
 
-[node name="player_body" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.118305, 11.6857, -0.0495176 )
+[node name="player_body" type="KinematicBody" parent="." groups=["MainPlayer"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.118305, 2.62801, -0.0495176 )
 script = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="player_body"]
@@ -125,15 +99,8 @@ shape = SubResource( 6 )
 
 [node name="player" parent="player_body" instance=ExtResource( 3 )]
 
-[node name="SpringArm" type="SpringArm" parent="player_body"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.4365, 8.51203 )
-
-[node name="Camera" type="Camera" parent="player_body/SpringArm"]
-transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0 )
-environment = SubResource( 3 )
-
 [node name="obstacle" type="RigidBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.40501, 3.75673, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.40501, 3.75673, -12.8915 )
 
 [node name="CollisionShape" type="CollisionShape" parent="obstacle"]
 shape = SubResource( 7 )
@@ -142,7 +109,7 @@ shape = SubResource( 7 )
 height = 6.72159
 
 [node name="obstacle2" type="RigidBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4568, 3.75673, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.4239, 3.75673, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="obstacle2"]
 shape = SubResource( 7 )
@@ -155,11 +122,21 @@ mode = 1
 
 [node name="plane" type="MeshInstance" parent="groud"]
 mesh = SubResource( 2 )
-skeleton = NodePath("../../player_body/SpringArm/Camera")
+skeleton = NodePath("../../camera_arm/Camera")
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="groud"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.00753, 0 )
 shape = SubResource( 8 )
+
+[node name="car" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.6855, 0 )
+
+[node name="camera_arm" type="SpringArm" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.118305, 14.0645, 8.46251 )
+script = ExtResource( 6 )
+
+[node name="Camera" type="Camera" parent="camera_arm"]
+transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0 )
 
 [connection signal="timeout" from="Polygon2D/IntroDialogAnimationTimer" to="Polygon2D/IntroRTE" method="_OnIntroDialogAnimationTimerTimeout"]
