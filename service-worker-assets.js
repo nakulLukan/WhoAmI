@@ -33,7 +33,7 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-8DfwmFfbGj7WMwQ6zluz\/g6szHqd3kDcz1mLVHQps9w=",
+      "hash": "sha256-4hwQmmTuj490eSukxnjKNudNpjWoW5osn7B2qr2EXpQ=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -237,7 +237,7 @@
       "url": "_framework\/System.Text.RegularExpressions.dll"
     },
     {
-      "hash": "sha256-QRZytCr5Geff1Yx+UL9UFhr2P73a8WDC14aLF5M929w=",
+      "hash": "sha256-aKBsMpTvlDTvrEKdSNLkl8nzOuX6IuJutTzQ0BomMgM=",
       "url": "_framework\/WhoAmI.Web.dll"
     },
     {
@@ -337,7 +337,7 @@
       "url": "godot\/HTML5\/index.audio.worklet.js"
     },
     {
-      "hash": "sha256-U\/gPjj7jL6obb8dQmFPFPRHwM3ezxSmD+jfeODicnXI=",
+      "hash": "sha256-MZFGSbeY\/vU8WOkM\/JtSMkkOnnqM9ydQ9+Pp1BvUWfY=",
       "url": "godot\/HTML5\/index.html"
     },
     {
@@ -353,7 +353,7 @@
       "url": "godot\/HTML5\/index.offline.html"
     },
     {
-      "hash": "sha256-OYKIzjlAL\/iVQAwZ6Bu+keNGtseGmdJ4pdx2+3P0MaU=",
+      "hash": "sha256-4Y+a5VShtLn6rbYLY71tSuBnZN+KNnn1BqNFziVUTm4=",
       "url": "godot\/HTML5\/index.pck"
     },
     {
@@ -421,5 +421,5 @@
       "url": "manifest.json"
     }
   ],
-  "version": "m+i9LkLw"
+  "version": "on\/JhoVZ"
 };
