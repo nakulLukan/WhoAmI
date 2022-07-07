@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Dialogs/Dialog.cs" type="Script" id=1]
 [ext_resource path="res://StaticAssets/Fonts/SEGOEUI.TTF" type="DynamicFontData" id=2]
 [ext_resource path="res://Prefabs/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Player/PlayerMovement.cs" type="Script" id=4]
-[ext_resource path="res://Prefabs/car.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/Camera/PlayerCamFollow.cs" type="Script" id=6]
 
 [sub_resource type="DynamicFont" id=1]
@@ -51,12 +50,13 @@ shader = SubResource( 4 )
 material = SubResource( 5 )
 size = Vector2( 200, 200 )
 
-[sub_resource type="BoxShape" id=8]
-extents = Vector3( 100.346, 1, 98.1802 )
+[sub_resource type="ConvexPolygonShape" id=14]
+points = PoolVector3Array( -100, 0, -100, -100, 0, 100, 100, 0, -100, 100, 0, 100 )
 
 [node name="World" type="Node"]
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
 color = Color( 0.580392, 0.709804, 0.623529, 1 )
 antialiased = true
 polygon = PoolVector2Array( 128, 384, 128, 512, 400, 512, 579.91, 512, 896, 512, 896, 384 )
@@ -126,14 +126,10 @@ skeleton = NodePath("../../camera_arm/Camera")
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="groud"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.00753, 0 )
-shape = SubResource( 8 )
-
-[node name="car" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.6855, 0 )
+shape = SubResource( 14 )
 
 [node name="camera_arm" type="SpringArm" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.118305, 14.0645, 8.46251 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.118305, 22.4397, 15.4531 )
 script = ExtResource( 6 )
 
 [node name="Camera" type="Camera" parent="camera_arm"]
