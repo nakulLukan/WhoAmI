@@ -4,6 +4,7 @@
 [ext_resource path="res://StaticAssets/Fonts/SEGOEUI.TTF" type="DynamicFontData" id=2]
 [ext_resource path="res://Prefabs/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Player/PlayerMovement.cs" type="Script" id=4]
+[ext_resource path="res://Prefabs/quaters.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/Camera/PlayerCamFollow.cs" type="Script" id=6]
 
 [sub_resource type="DynamicFont" id=1]
@@ -14,9 +15,6 @@ font_data = ExtResource( 2 )
 [sub_resource type="CapsuleShape" id=6]
 radius = 0.5
 height = 3.9
-
-[sub_resource type="CylinderShape" id=7]
-height = 7.0
 
 [sub_resource type="VisualShader" id=4]
 code = "shader_type spatial;
@@ -50,8 +48,8 @@ shader = SubResource( 4 )
 material = SubResource( 5 )
 size = Vector2( 200, 200 )
 
-[sub_resource type="ConvexPolygonShape" id=14]
-points = PoolVector3Array( -100, 0, -100, -100, 0, 100, 100, 0, -100, 100, 0, 100 )
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 100, 0.3, 100 )
 
 [node name="World" type="Node"]
 
@@ -99,24 +97,6 @@ shape = SubResource( 6 )
 
 [node name="player" parent="player_body" instance=ExtResource( 3 )]
 
-[node name="obstacle" type="RigidBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.40501, 3.75673, -12.8915 )
-
-[node name="CollisionShape" type="CollisionShape" parent="obstacle"]
-shape = SubResource( 7 )
-
-[node name="CSGCylinder" type="CSGCylinder" parent="obstacle"]
-height = 6.72159
-
-[node name="obstacle2" type="RigidBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.4239, 3.75673, 0 )
-
-[node name="CollisionShape" type="CollisionShape" parent="obstacle2"]
-shape = SubResource( 7 )
-
-[node name="CSGCylinder" type="CSGCylinder" parent="obstacle2"]
-height = 6.72159
-
 [node name="groud" type="RigidBody" parent="."]
 mode = 1
 
@@ -126,7 +106,8 @@ skeleton = NodePath("../../camera_arm/Camera")
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="groud"]
-shape = SubResource( 14 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.341746, 0 )
+shape = SubResource( 7 )
 
 [node name="camera_arm" type="SpringArm" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.118305, 22.4397, 15.4531 )
@@ -134,5 +115,11 @@ script = ExtResource( 6 )
 
 [node name="Camera" type="Camera" parent="camera_arm"]
 transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0 )
+
+[node name="quaters" parent="." instance=ExtResource( 5 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.4847, 0, -54.6015 )
+
+[node name="quaters2" parent="." instance=ExtResource( 5 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.4847, 0, 55.0989 )
 
 [connection signal="timeout" from="Polygon2D/IntroDialogAnimationTimer" to="Polygon2D/IntroRTE" method="_OnIntroDialogAnimationTimerTimeout"]

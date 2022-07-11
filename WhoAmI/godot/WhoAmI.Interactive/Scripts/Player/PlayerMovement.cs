@@ -3,7 +3,7 @@ using System;
 public class PlayerMovement : KinematicBody
 {
     // Movement speed of the player
-    public int Speed { get; set; } = 4;
+    public int Speed { get; set; } = 8;
 
     // Rotation speed of the player
     public int RotationSpeed { get; set; } = 7;
@@ -69,12 +69,14 @@ public class PlayerMovement : KinematicBody
     public override void _PhysicsProcess(float delta)
     {
         // Get linear velocity of from the movement key press.
-        velocity += gravity;
-        velocity.x = (rightAction - leftAction) * Speed;
-        velocity.z = (backwardAction - forwardAction) * Speed;
+        velocity.x = (rightAction - leftAction);
+        velocity.z = (backwardAction - forwardAction);
         input.x = velocity.x;
         input.z = velocity.z;
-
+        
+        // Normalize direction vector for uniform speed in all direction
+        velocity = velocity.Normalized() * Speed;
+        velocity.y = gravity.y;
         // Update player target roation only if any movement key (W,A,S or D) is pressed.
         if(input.Length() > 0){
             targetLookDir = Transform.Identity.LookingAt(Vector3.Zero - input.Normalized(), Vector3.Up).basis.GetEuler();
