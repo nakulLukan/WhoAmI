@@ -38,7 +38,6 @@ void light() {
 
 }
 "
-graph_offset = Vector2( 8.13802e-05, 202.708 )
 nodes/fragment/0/position = Vector2( 380, 160 )
 
 [sub_resource type="ShaderMaterial" id=5]
@@ -46,10 +45,10 @@ shader = SubResource( 4 )
 
 [sub_resource type="PlaneMesh" id=2]
 material = SubResource( 5 )
-size = Vector2( 200, 200 )
+size = Vector2( 2000, 2000 )
 
 [sub_resource type="BoxShape" id=7]
-extents = Vector3( 100, 0.3, 100 )
+extents = Vector3( 1000, 0.3, 1000 )
 
 [node name="World" type="Node"]
 
@@ -81,11 +80,9 @@ autostart = true
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.204735, 0.245324, -0.947576, 0, 0.968082, 0.250633, 0.978817, -0.0513135, 0.1982, 0, 1.73222, 0 )
-light_energy = 0.5
-light_indirect_energy = 0.5
-light_specular = 0.0
 shadow_enabled = true
 shadow_contact = 1.0
+directional_shadow_mode = 0
 
 [node name="player_body" type="KinematicBody" parent="." groups=["MainPlayer"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.118305, 2.62801, -0.0495176 )
@@ -117,9 +114,6 @@ script = ExtResource( 6 )
 transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0 )
 
 [node name="quaters" parent="." instance=ExtResource( 5 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.4847, 0, -54.6015 )
-
-[node name="quaters2" parent="." instance=ExtResource( 5 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.4847, 0, 55.0989 )
+transform = Transform( 0.852385, 0, -0.522915, 0, 1, 0, 0.522915, 0, 0.852385, 0, 0, -27.1156 )
 
 [connection signal="timeout" from="Polygon2D/IntroDialogAnimationTimer" to="Polygon2D/IntroRTE" method="_OnIntroDialogAnimationTimerTimeout"]
