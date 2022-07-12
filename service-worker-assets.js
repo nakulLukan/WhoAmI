@@ -337,7 +337,7 @@
       "url": "godot\/HTML5\/index.audio.worklet.js"
     },
     {
-      "hash": "sha256-HzwE7DCfg2vpeoK+ljlUCnoBuH2paBoo7LeCGNyyg8Q=",
+      "hash": "sha256-6VaQxN49SeVkEppxFE9q2tLfZcF+RPxLeb2AoAiYGCo=",
       "url": "godot\/HTML5\/index.html"
     },
     {
@@ -353,7 +353,7 @@
       "url": "godot\/HTML5\/index.offline.html"
     },
     {
-      "hash": "sha256-mZ8Of1gJA4\/pravkJ\/h94xb8xrlS1oOT3YpqGCoQEUM=",
+      "hash": "sha256-h2BwqMyypMekzq7HQ1xintDlF2xEbyN0sNG9n5EwXwk=",
       "url": "godot\/HTML5\/index.pck"
     },
     {
@@ -421,5 +421,5 @@
       "url": "manifest.json"
     }
   ],
-  "version": "hfvRmZiH"
+  "version": "J0nyTxi1"
 };
