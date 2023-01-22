@@ -1,0 +1,96 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/Player/PlayerNavigation.cs" type="Script" id=1]
+[ext_resource path="res://Scripts/Camera/PlayerLookAt.cs" type="Script" id=2]
+[ext_resource path="res://Prefabs/player.tscn" type="PackedScene" id=3]
+
+[sub_resource type="SphereShape" id=1]
+radius = 20.0
+
+[sub_resource type="SphereMesh" id=2]
+radius = 20.0
+height = 40.0
+
+[sub_resource type="SphereShape" id=3]
+
+[sub_resource type="CubeMesh" id=4]
+
+[sub_resource type="CubeMesh" id=5]
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.101961, 1, 0, 1 )
+metallic_specular = 0.0
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 0.713726, 0.0705882, 0.0705882, 1 )
+
+[sub_resource type="CylinderMesh" id=7]
+
+[node name="world" type="Spatial"]
+
+[node name="earth" type="RigidBody" parent="."]
+mode = 1
+mass = 1000.0
+sleeping = true
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+
+[node name="collision_shape" type="CollisionShape" parent="earth"]
+shape = SubResource( 1 )
+
+[node name="mesh" type="CSGMesh" parent="earth"]
+mesh = SubResource( 2 )
+
+[node name="CSGBox" type="CSGBox" parent="earth"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20.7722 )
+
+[node name="CSGBox2" type="CSGBox" parent="earth"]
+transform = Transform( 1, 0, 0, 0, 0.908085, 0.418787, 0, -0.418787, 0.908085, -3.19284, 7.60859, 19.3237 )
+
+[node name="player" type="KinematicBody" parent="." groups=["free_look_camera"]]
+transform = Transform( 1, 0, 0, 0, -4.37113e-08, 0.999999, 0, -0.999999, -4.37113e-08, -17.4632, 25.425, 0 )
+script = ExtResource( 1 )
+
+[node name="collision_shape" type="CollisionShape" parent="player"]
+transform = Transform( 1, 0, 0, 0, 1, -3.55271e-15, 0, 3.55271e-15, 1, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="mesh" type="CSGMesh" parent="player"]
+mesh = SubResource( 4 )
+
+[node name="control_points" type="Spatial" parent="player"]
+
+[node name="forward" type="CSGMesh" parent="player/control_points"]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0, 2.57461 )
+mesh = SubResource( 5 )
+
+[node name="bottom" type="CSGMesh" parent="player/control_points"]
+transform = Transform( 0.2, 0, 0, 0, -8.74228e-09, -1, 0, 0.2, -4.37114e-08, 0, -2.7, 0 )
+mesh = SubResource( 5 )
+material = SubResource( 6 )
+
+[node name="right" type="CSGMesh" parent="player/control_points"]
+transform = Transform( 1, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 2.7, 0, 0 )
+mesh = SubResource( 5 )
+material = SubResource( 8 )
+
+[node name="camera_position" type="Spatial" parent="player"]
+transform = Transform( 1, 0, 0, 0, 1, 7.10543e-15, 0, -7.10543e-15, 1, 0, -5, 15 )
+
+[node name="sub_player" parent="player" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.190645, 0.490261, 3 )
+
+[node name="gravity_point" type="Spatial" parent="."]
+
+[node name="CSGMesh" type="CSGMesh" parent="gravity_point"]
+visible = false
+mesh = SubResource( 7 )
+
+[node name="camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 19.1442, 13.7101 )
+script = ExtResource( 2 )
+CamFollowSpeed = 10.0

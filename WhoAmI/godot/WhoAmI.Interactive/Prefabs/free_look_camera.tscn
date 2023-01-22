@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Camera/FreeLookCamera/FreeLookCamera.cs" type="Script" id=1]
+[ext_resource path="res://Scripts/Camera/FreeLookCamera/FreeLookCameraControl.cs" type="Script" id=2]
+
+[node name="world" type="Spatial" groups=["free_look_camera"]]
+transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0 )
+script = ExtResource( 1 )
+
+[node name="Camera" type="Camera" parent="." groups=["free_look_camera"]]
+near = 0.01
+far = 1000.0
+
+[node name="CheckBox" type="CheckBox" parent="Camera"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 24.0
+margin_bottom = 24.0
+text = "Free Look"
+script = ExtResource( 2 )
+
+[node name="control_points" type="Node" parent="."]
+
+[node name="forward" type="Spatial" parent="control_points"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
+
+[node name="left" type="Spatial" parent="control_points"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0 )

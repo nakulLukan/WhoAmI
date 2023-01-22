@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Dialogs/Dialog.cs" type="Script" id=1]
 [ext_resource path="res://StaticAssets/Fonts/SEGOEUI.TTF" type="DynamicFontData" id=2]
 [ext_resource path="res://Prefabs/player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scripts/Player/PlayerMovement.cs" type="Script" id=4]
+[ext_resource path="res://Scripts/Player/PlayerAnimation.cs" type="Script" id=4]
 [ext_resource path="res://Prefabs/quaters.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/Camera/PlayerCamFollow.cs" type="Script" id=6]
 
