@@ -35,7 +35,7 @@ public class PlayerNavigation : KinematicBody
         // Move y-axis
         if (keyboardAction.y != 0)
         {
-            MoveAndCollide(subPlayer.GlobalTransform.basis.z.Normalized() * keyboardAction.y * MovementSpeed);
+            MoveAndCollide(subPlayer.GlobalTransform.basis.z.Normalized() * keyboardAction.y * MovementSpeed * delta);
         }
 
         // Move x-axis
