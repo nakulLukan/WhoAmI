@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Environment/GravitationalForce.cs" type="Script" id=1]
+
+[node name="gravity_component" type="Node"]
+script = ExtResource( 1 )
+BodyMass = 5.0

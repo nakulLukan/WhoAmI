@@ -3,6 +3,7 @@ using System;
 
 public class PlayerNavigation : KinematicBody
 {
+    [Export] public int BodyMass { get; set; } = 10;
     [Export] public float GravitationalForce { get; set; } = 9.8F;
     [Export] public float MovementSpeed { get; set; } = 0.2F;
     [Export] public float RotationSpeed { get; set; } = 10F;
@@ -26,7 +27,8 @@ public class PlayerNavigation : KinematicBody
         var direction = gravity.GlobalTransform.origin - GlobalTransform.origin;
 
         // Add gravitational force
-        MoveAndCollide(direction * delta * GravitationalForce);
+        var gravityForce = this.CalculateGravity(BodyMass, gravity.GlobalTransform.origin, GameConstant.EarthMass);
+        MoveAndCollide(direction * delta * gravityForce);
 
         // Rotate the body normal to the earth surface
         this.SafeLookAt(gravity.GlobalTransform.origin, Vector3.Up);
