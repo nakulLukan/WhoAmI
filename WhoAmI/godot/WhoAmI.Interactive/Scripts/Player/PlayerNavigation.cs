@@ -19,7 +19,7 @@ public class PlayerNavigation : KinematicBody
     public override void _Ready()
     {
         gravity = GetTree().Root.GetNode<Spatial>(NodePath.GravityPoint);
-        subPlayer = GetChild<Spatial>(4);
+        subPlayer = GetNode<Spatial>(NodePath.SubPlayer);
     }
 
     public override void _PhysicsProcess(float delta)

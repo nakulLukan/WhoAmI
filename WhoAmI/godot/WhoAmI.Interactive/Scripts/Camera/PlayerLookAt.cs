@@ -13,7 +13,7 @@ public class PlayerLookAt : Spatial
     public override void _Ready()
     {
         player = GetTree().Root.GetNode<Spatial>(NodePath.Player);
-        TargetPositionChildObject = player.GetChild<Spatial>(3);
+        TargetPositionChildObject = player.GetNode<Spatial>(NodePath.PlayerCameraPosition);
         targetDistanceFromPlayer = player.Transform.origin - TargetPositionChildObject.Transform.origin;
         InMemoryStore.AddGameObject(TagConstant.MainCamera, this);
     }
