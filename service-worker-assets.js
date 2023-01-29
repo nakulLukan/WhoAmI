@@ -33,7 +33,7 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-0M4r4JX1f0avzni55Q8PkAKMFbjj77UfoG1ALwDP7N8=",
+      "hash": "sha256-Z4gmaYDHkPkrez1GdFaD7DfZUAykYDq9Fgq1CqAQYVQ=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -237,7 +237,7 @@
       "url": "_framework\/System.Text.RegularExpressions.dll"
     },
     {
-      "hash": "sha256-tW2Z07gcqilkD45KsPG3Vg4A9xOg\/wiex\/wCpT3z0p0=",
+      "hash": "sha256-NTI8L99Orsu+ZiHgBN2AZiZr\/EVp00vE+GlSM439idg=",
       "url": "_framework\/WhoAmI.Web.dll"
     },
     {
@@ -421,5 +421,5 @@
       "url": "manifest.json"
     }
   ],
-  "version": "62tYKnOi"
+  "version": "LRzki2ml"
 };
