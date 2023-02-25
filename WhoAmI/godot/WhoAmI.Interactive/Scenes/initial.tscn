@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Player/PlayerNavigation.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/Camera/PlayerLookAt.cs" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Prefabs/gravity_component.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/Planets/moon.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Prefabs/Planets/cloud_1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Prefabs/Buildings/my_house.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CapsuleShape" id=11]
 radius = 0.5
@@ -24,6 +25,7 @@ rough = true
 [node name="world" type="Spatial"]
 
 [node name="moon" parent="." instance=ExtResource( 6 )]
+input_ray_pickable = false
 
 [node name="player" type="KinematicBody" parent="." groups=["free_look_camera"]]
 transform = Transform( 0.957993, 6.84383e-09, -0.286792, 0.286792, -4.67243e-08, 0.957992, -6.84383e-09, -0.999999, -4.67243e-08, -13.0682, 43.5696, -9.11424e-07 )
@@ -81,13 +83,20 @@ BodyMass = 10000.0
 [node name="clouds" type="Node" parent="world_static_objects"]
 
 [node name="cloud_1" parent="world_static_objects/clouds" instance=ExtResource( 7 )]
-transform = Transform( 13, 0, 0, 0, 12.5553, -3.371, 0, 3.371, 12.5553, 2.62925, 23.9733, 1.92624 )
+transform = Transform( 19.2559, 5.38949, -0.405363, -5.30821, 18.5766, -5.17028, -1.01674, 5.0855, 19.3159, 7.02129, 28.26, 1.92624 )
 skeleton = NodePath("../..")
 
 [node name="cloud_2" parent="world_static_objects/clouds" instance=ExtResource( 7 )]
-transform = Transform( 10, 0, 0, 0, 9.84166, 1.77251, 0, -1.77251, 9.84166, 1.85986, 24.849, -3.12025 )
+transform = Transform( 20, 0, 0, 0, 19.6833, 3.54502, 0, -3.54502, 19.6833, 0.630085, 31.1602, -6.09926 )
 skeleton = NodePath("../..")
 
 [node name="cloud_3" parent="world_static_objects/clouds" instance=ExtResource( 7 )]
-transform = Transform( 10, 0, 0, 0, -9.97598, 0.692691, 0, -0.692691, -9.97598, -1.60546, 23.4389, 0.250427 )
+transform = Transform( 18.9813, 6.29404, -0.308741, 6.30021, -18.9337, 1.35054, 0.132738, -1.37901, -19.952, -5.00532, 29.1572, 0.250427 )
 skeleton = NodePath("../..")
+
+[node name="houses" type="Node" parent="world_static_objects"]
+
+[node name="my_house" parent="world_static_objects/houses" instance=ExtResource( 8 )]
+transform = Transform( 3.62133, 1.6928, 0.142922, -1.69882, 3.60849, 0.304662, 0, -0.33652, 3.98582, 9.57039, 19.5475, -0.0106296 )
+
+[node name="ui" type="Node" parent="."]

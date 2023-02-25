@@ -5,7 +5,7 @@ public class PlayerNavigation : KinematicBody
 {
     [Export] public int BodyMass { get; set; } = 10;
     [Export] public float GravitationalForce { get; set; } = 9.8F;
-    [Export] public float MovementSpeed { get; set; } = 0.2F;
+    [Export] public float MovementSpeed { get; set; } = 10F;
     [Export] public float RotationSpeed { get; set; } = 10F;
     [Export] public int MaxZoomOut { get; set; } = 35;
     [Export] public int MinZoomOut { get; set; } = 15;
