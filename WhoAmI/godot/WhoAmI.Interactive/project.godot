@@ -14,6 +14,10 @@ config/name="Who Am I. Interactive"
 run/main_scene="res://Scenes/initial.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameActionSignal="*res://Scripts/Singletons/Signals/GameActionSignal.cs"
+
 [global]
 
 depth=false

@@ -13,6 +13,9 @@ public class GameAction : Area
 
     public void OnActionAreaEntered(Node body)
     {
-        Utility.PrintPretty(body.Name);
+        if (body.Name != NodeName.Player)
+        {
+            return;
+        }
     }
 }

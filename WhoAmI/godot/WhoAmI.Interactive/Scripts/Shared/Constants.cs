@@ -5,7 +5,7 @@ public static class Group
 
 public static class NodeName
 {
-    public const string Player = "player_body";
+    public const string Player = "player";
 }
 
 public static class NodePath

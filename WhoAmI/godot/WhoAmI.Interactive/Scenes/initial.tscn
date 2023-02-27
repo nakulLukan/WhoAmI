@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Player/PlayerNavigation.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/Camera/PlayerLookAt.cs" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Prefabs/Planets/moon.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Prefabs/Planets/cloud_1.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Prefabs/Buildings/my_house.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/Player/DialogAction.cs" type="Script" id=9]
 
 [sub_resource type="CapsuleShape" id=11]
 radius = 0.5
@@ -27,7 +28,7 @@ rough = true
 [node name="moon" parent="." instance=ExtResource( 6 )]
 input_ray_pickable = false
 
-[node name="player" type="KinematicBody" parent="." groups=["free_look_camera"]]
+[node name="player" type="KinematicBody" parent="." groups=["free_look_camera", "player"]]
 transform = Transform( 0.957993, 6.84383e-09, -0.286792, 0.286792, -4.67243e-08, 0.957992, -6.84383e-09, -0.999999, -4.67243e-08, -13.0682, 43.5696, -9.11424e-07 )
 script = ExtResource( 1 )
 
@@ -40,6 +41,11 @@ transform = Transform( 1, 0, 0, 0, 1, 7.10543e-15, 0, -7.10543e-15, 1, 0, -5, 25
 
 [node name="sub_player" parent="player" instance=ExtResource( 3 )]
 transform = Transform( 1, -5.96046e-08, -4.44089e-16, 8.88178e-16, -4.37114e-08, -1, 1.19209e-07, 1, -4.37114e-08, 0.190643, 0.490261, 2.48906 )
+
+[node name="non_objects" type="Node" parent="player"]
+
+[node name="dialog_action_controller" type="Node" parent="player/non_objects"]
+script = ExtResource( 9 )
 
 [node name="gravity_point" type="Spatial" parent="."]
 
