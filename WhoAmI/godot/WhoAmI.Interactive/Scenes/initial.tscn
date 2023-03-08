@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Player/PlayerNavigation.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/Camera/PlayerLookAt.cs" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://Prefabs/Planets/cloud_1.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Prefabs/Buildings/my_house.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/Player/DialogAction.cs" type="Script" id=9]
+[ext_resource path="res://Prefabs/UIControls/Dialog.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Prefabs/UIControls/InteractButton.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CapsuleShape" id=11]
 radius = 0.5
@@ -106,3 +108,20 @@ skeleton = NodePath("../..")
 transform = Transform( 3.62133, 1.6928, 0.142922, -1.69882, 3.60849, 0.304662, 0, -0.33652, 3.98582, 9.57039, 19.5475, -0.0106296 )
 
 [node name="ui" type="Node" parent="."]
+
+[node name="Control" type="Control" parent="ui"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="DialogControl" parent="ui/Control" instance=ExtResource( 10 )]
+
+[node name="InteractButton" parent="ui/Control" instance=ExtResource( 11 )]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -32.0
+margin_top = -136.0
+margin_right = 30.0
+margin_bottom = -116.0
