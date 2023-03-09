@@ -1,14 +1,21 @@
 ﻿@using WhoAmI.Web.Interfaces
 @inject NavigationManager NavigationManager
 <style>
-
+    
     nav {
         top: 0px;
         position: fixed;
         height: 100%;
         width: auto;
         z-index: 1;
+        transform: translateX(-99.9%);
+        transition-duration: 100ms;
     }
+
+    nav:hover {
+            transform: translateX(0%);
+            transition-duration: 100ms;
+        }
 
         nav div {
             height: 100%;

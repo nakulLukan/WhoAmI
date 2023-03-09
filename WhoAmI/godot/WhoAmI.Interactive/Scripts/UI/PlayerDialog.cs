@@ -11,10 +11,10 @@ public class PlayerDialog : Control
     public override void _Ready()
     {
         this.GetUIControlSignal().Connect(nameof(UIControlSignal.PlayerDialog), this, nameof(OnDialogTextRecieved));
-        // this.Visible = ShowDialogInitially;
         _colorRect = GetChild<ColorRect>(0);
         _dialogText = _colorRect.GetChild<RichTextLabel>(0);
         _animationPlayer = GetNode<AnimationPlayer>("./AnimationPlayer");
+        Visible = false;
     }
 
     public void OnDialogTextRecieved(string dialogText)
@@ -38,7 +38,8 @@ public class PlayerDialog : Control
         }
     }
 
-    void OpenDialogMessagePanel(string dialogText){
+    void OpenDialogMessagePanel(string dialogText)
+    {
         _dialogText.Text = dialogText;
         _animationPlayer.Play("SlideIn");
     }
