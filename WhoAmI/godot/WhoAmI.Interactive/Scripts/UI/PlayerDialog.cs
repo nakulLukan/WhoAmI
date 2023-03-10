@@ -4,16 +4,24 @@ using System;
 public class PlayerDialog : Control
 {
     [Export] public bool ShowDialogInitially { get; set; }
+    [Export] public float CharacterDelay { get; set; } = 0.05f;
+
     AnimationPlayer _animationPlayer;
 
     ColorRect _colorRect = null;
     RichTextLabel _dialogText = null;
+    Timer _timer = null;
+
+    bool IsOpen() => Visible;
     public override void _Ready()
     {
         this.GetUIControlSignal().Connect(nameof(UIControlSignal.PlayerDialog), this, nameof(OnDialogTextRecieved));
         _colorRect = GetChild<ColorRect>(0);
         _dialogText = _colorRect.GetChild<RichTextLabel>(0);
         _animationPlayer = GetNode<AnimationPlayer>("./AnimationPlayer");
+        _timer = GetNode<Timer>("./Timer");
+        _timer.WaitTime = CharacterDelay;
+        _dialogText.BbcodeEnabled = false;
         Visible = false;
     }
 
@@ -24,12 +32,12 @@ public class PlayerDialog : Control
 
     public override void _Input(InputEvent @event)
     {
-        if (@event is InputEventMouseButton mouseButtonEvent)
+        if (@event is InputEventMouseButton mouseButtonEvent && !@event.IsPressed())
         {
             switch ((ButtonList)mouseButtonEvent.ButtonIndex)
             {
                 case ButtonList.Left:
-                    if (Visible)
+                    if (IsOpen())
                     {
                         CloseDialogMessagePanel();
                     }
@@ -41,12 +49,24 @@ public class PlayerDialog : Control
     void OpenDialogMessagePanel(string dialogText)
     {
         _dialogText.Text = dialogText;
+        _dialogText.VisibleCharacters = 0;
+        _timer.Start();
         _animationPlayer.Play("SlideIn");
     }
 
-    private void CloseDialogMessagePanel()
+    void CloseDialogMessagePanel()
     {
         _animationPlayer.Play("SlideOut");
         _dialogText.Text = string.Empty;
+        _timer.Stop();
+    }
+
+    public void OnTimerTimeout()
+    {   
+        _dialogText.VisibleCharacters += 1;
+        if (_dialogText.VisibleCharacters >= _dialogText.GetTotalCharacterCount())
+        {
+            _timer.Stop();
+        }
     }
 }
