@@ -8,6 +8,9 @@ public class InteractButtonAction : Button
     {
         this.GetGameActionSignal()
             .Connect(nameof(GameActionSignal.DialogAction), this, nameof(OnDialogRecieved));
+        this.GetGameActionSignal()
+            .Connect(nameof(GameActionSignal.DialogActionAreaExit), this, nameof(OnDialogAreaExit));
+            
     }
 
     public void OnDialogRecieved(string description)
@@ -17,6 +20,10 @@ public class InteractButtonAction : Button
         {
             this.GetUIControlSignal().EmitSignal(nameof(UIControlSignal.PlayerDialog), description);
         };
+    }
+
+    void OnDialogAreaExit(){
+        this.Visible = false;
     }
 
     public void OnInteractPressed()

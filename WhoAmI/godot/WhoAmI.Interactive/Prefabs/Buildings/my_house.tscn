@@ -37,10 +37,12 @@ script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": " :sunglasses:"
 }
-Description = "I live in a beautiful place in Kerala, India. \\n\\r At present, I am working from my home."
+Description = "I live in a beautiful place in Kerala, India.
+At present, I am working from my home."
 
 [node name="house_action_collider" type="CollisionShape" parent="action_area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.519328 )
 shape = SubResource( 5 )
 
 [connection signal="body_entered" from="action_area" to="action_area" method="OnActionAreaEntered"]
+[connection signal="body_exited" from="action_area" to="action_area" method="OnActionAreaExit"]

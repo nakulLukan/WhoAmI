@@ -2,10 +2,11 @@ using Godot;
 public class HouseAction : Area
 {   
     [Export] public string Description { get; set; } = "";
-    GameActionSignal GameActionSignal;
+    GameActionSignal _gameActionSignal;
     public override void _Ready(){
-        GameActionSignal = this.GetGameActionSignal();
+        _gameActionSignal = this.GetGameActionSignal();
     }
+
     public void OnActionAreaEntered(Node body)
     {
         if (body.Name != NodeName.Player)
@@ -13,6 +14,16 @@ public class HouseAction : Area
             return;
         }
 
-        GameActionSignal.EmitSignal(Signals.DialogActionEvent, Description);
+        _gameActionSignal.EmitSignal(nameof(GameActionSignal.DialogAction), Description);
+    }   
+
+    public void OnActionAreaExit(Node body)
+    {
+        if (body.Name != NodeName.Player)
+        {
+            return;
+        }
+
+        _gameActionSignal.EmitSignal(nameof(GameActionSignal.DialogActionAreaExit));
     }   
 }
