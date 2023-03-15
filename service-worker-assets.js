@@ -301,12 +301,12 @@
       "url": "css\/open-iconic\/README.md"
     },
     {
-      "hash": "sha256-7CEEWvVxSf6V6Ei5pmCQEoUV93NO3+\/aJOCwrk5LKOM=",
-      "url": "data\/personal-info.json"
+      "hash": "sha256-pdn\/GgIOOxu9Zh8Iq74pmPs6RAD8m87AqnrdtmPIEkg=",
+      "url": "data\/dialogs.json"
     },
     {
-      "hash": "sha256-qobRuGEARyHxo5ihjDTMH7SaLdIDQqWozxC\/JlvNMa8=",
-      "url": "data\/test.json"
+      "hash": "sha256-7CEEWvVxSf6V6Ei5pmCQEoUV93NO3+\/aJOCwrk5LKOM=",
+      "url": "data\/personal-info.json"
     },
     {
       "hash": "sha256-Jtxf9L+5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM=",
@@ -341,7 +341,7 @@
       "url": "godot\/HTML5\/index.audio.worklet.js"
     },
     {
-      "hash": "sha256-C8L9Pv\/31Z8cHlPDFPgVA\/oXHxWf5c9EMgfIcmo1Aps=",
+      "hash": "sha256-c5IssI7WYfml8wKGmKUU\/NLwdZjxhMp4gjIe\/SICkSU=",
       "url": "godot\/HTML5\/index.html"
     },
     {
@@ -357,7 +357,7 @@
       "url": "godot\/HTML5\/index.offline.html"
     },
     {
-      "hash": "sha256-fb23Q+QuLOwdLOsR50raakitMESInw2+sx\/mLm0M7YM=",
+      "hash": "sha256-SeEYFJZU4IRSHiKqtm3u3sCwA3PhpG8qkLZ9UmYPw\/s=",
       "url": "godot\/HTML5\/index.pck"
     },
     {
@@ -369,7 +369,7 @@
       "url": "godot\/HTML5\/index.png.import"
     },
     {
-      "hash": "sha256-BI70WTVvZRnFiPLuQZXkH\/XJP7WzBFMx4abC2SsOQ8w=",
+      "hash": "sha256-vidi6Gy39G3pRFxNiatYdKLyXyuC7ckHWhWeEQSJp7Y=",
       "url": "godot\/HTML5\/index.service.worker.js"
     },
     {
@@ -425,5 +425,5 @@
       "url": "manifest.json"
     }
   ],
-  "version": "oeG8BGiS"
+  "version": "r1fMZtaH"
 };
