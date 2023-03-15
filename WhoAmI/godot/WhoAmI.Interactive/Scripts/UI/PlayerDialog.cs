@@ -1,5 +1,5 @@
 using Godot;
-using System;
+using WhoAmI.Data;
 
 public class PlayerDialog : Control
 {
@@ -11,6 +11,7 @@ public class PlayerDialog : Control
     ColorRect _colorRect = null;
     RichTextLabel _dialogText = null;
     Timer _timer = null;
+    ActorDialogManager _dialogManager = null; 
 
     bool IsOpen() => Visible;
     public override void _Ready()
@@ -21,8 +22,10 @@ public class PlayerDialog : Control
         _animationPlayer = GetNode<AnimationPlayer>("./AnimationPlayer");
         _timer = GetNode<Timer>("./Timer");
         _timer.WaitTime = CharacterDelay;
+        _dialogManager = GetNode<ActorDialogManager>(NodePath.ActorDialogManager);
         _dialogText.BbcodeEnabled = false;
         Visible = false;
+
     }
 
     public void OnDialogTextRecieved(string dialogText)
@@ -30,7 +33,7 @@ public class PlayerDialog : Control
         OpenDialogMessagePanel(dialogText);
     }
 
-    public override void _Input(InputEvent @event)
+    public override void _GuiInput(InputEvent @event)
     {
         if (@event is InputEventMouseButton mouseButtonEvent && !@event.IsPressed())
         {
@@ -46,12 +49,16 @@ public class PlayerDialog : Control
         }
     }
 
-    void OpenDialogMessagePanel(string dialogText)
+    void OpenDialogMessagePanel(string dialogKey)
     {
-        _dialogText.Text = dialogText;
+        _dialogText.Text = _dialogManager.GetValue(dialogKey);
         _dialogText.VisibleCharacters = 0;
         _timer.Start();
-        _animationPlayer.Play("SlideIn");
+
+        if (!IsOpen())
+        {
+            _animationPlayer.Play("SlideIn");
+        }
     }
 
     void CloseDialogMessagePanel()
@@ -62,7 +69,7 @@ public class PlayerDialog : Control
     }
 
     public void OnTimerTimeout()
-    {   
+    {
         _dialogText.VisibleCharacters += 1;
         if (_dialogText.VisibleCharacters >= _dialogText.GetTotalCharacterCount())
         {

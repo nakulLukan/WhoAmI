@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/EnvObjects/MyHouse/HouseAction.cs" type="Script" id=1]
+[ext_resource path="res://Prefabs/GameAction/action_area.tscn" type="PackedScene" id=1]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "my_house_Plane"
@@ -32,17 +32,9 @@ skeleton = NodePath("")
 [node name="house_mesh_collision" type="CollisionShape" parent="."]
 shape = SubResource( 4 )
 
-[node name="action_area" type="Area" parent="."]
-script = ExtResource( 1 )
-__meta__ = {
-"_editor_description_": " :sunglasses:"
-}
-Description = "I live in a beautiful place in Kerala, India.
-At present, I am working from my home."
+[node name="action_area" parent="." instance=ExtResource( 1 )]
+Description = "HouseIntro"
 
 [node name="house_action_collider" type="CollisionShape" parent="action_area"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.519328 )
 shape = SubResource( 5 )
-
-[connection signal="body_entered" from="action_area" to="action_area" method="OnActionAreaEntered"]
-[connection signal="body_exited" from="action_area" to="action_area" method="OnActionAreaExit"]

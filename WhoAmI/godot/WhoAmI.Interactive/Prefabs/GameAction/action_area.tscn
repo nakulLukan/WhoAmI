@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/EnvObjects/MyHouse/HouseAction.cs" type="Script" id=1]
+
+[node name="action_area" type="Area"]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+Description = "I live in a beautiful place in Kerala, India.
+At present, I am working from my home."
+
+[connection signal="body_entered" from="." to="." method="OnActionAreaEntered"]
+[connection signal="body_exited" from="." to="." method="OnActionAreaExit"]
