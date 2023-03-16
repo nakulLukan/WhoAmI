@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/Player/PlayerNavigation.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/Camera/PlayerLookAt.cs" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Prefabs/UIControls/Dialog.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Prefabs/UIControls/InteractButton.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Prefabs/Mountains/snow_mountain.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Prefabs/OtherInteractiveObjects/Football/football.tscn" type="PackedScene" id=13]
 
 [sub_resource type="CapsuleShape" id=11]
 radius = 0.5
@@ -72,7 +73,9 @@ spot_range = 88.652
 spot_angle = 180.0
 
 [node name="box" type="RigidBody" parent="."]
+pause_mode = 1
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.7077, 0, 0 )
+visible = false
 mass = 100.0
 physics_material_override = SubResource( 12 )
 gravity_scale = 0.0
@@ -131,3 +134,8 @@ margin_left = -32.0
 margin_top = -136.0
 margin_right = 30.0
 margin_bottom = -116.0
+
+[node name="world_objects" type="Node" parent="."]
+
+[node name="football" parent="world_objects" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.83583, 21.0526, 4.15134 )

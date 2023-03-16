@@ -12,5 +12,10 @@ namespace WhoAmI.Interactive.Scripts.Shared.Extensions
             node.AddChild(http);
             return http;
         }
+
+        public static Spatial GetGravityPoint(this Node node)
+        {
+            return node.GetNode<Spatial>(NodePath.GravityPoint);
+        }
     }
 }

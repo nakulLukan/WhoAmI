@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using WhoAmI.Interactive.Scripts.Shared.Extensions;
+
 public class GravitationalForce : Node
 {
     [Export] public float BodyMass { get; set; }
@@ -8,7 +10,7 @@ public class GravitationalForce : Node
     public override void _Ready()
     {
         parent = GetParent<RigidBody>();
-        gravity = GetTree().Root.GetNode<Spatial>(NodePath.GravityPoint);
+        gravity = this.GetGravityPoint();
     }
     
     public override void _PhysicsProcess(float delta){
