@@ -357,7 +357,7 @@
       "url": "godot\/HTML5\/index.offline.html"
     },
     {
-      "hash": "sha256-SeEYFJZU4IRSHiKqtm3u3sCwA3PhpG8qkLZ9UmYPw\/s=",
+      "hash": "sha256-7+rPe5L\/7CwIXVLz9Mxbu61kdzPp9AmrMj25DOfeL6M=",
       "url": "godot\/HTML5\/index.pck"
     },
     {
@@ -369,7 +369,7 @@
       "url": "godot\/HTML5\/index.png.import"
     },
     {
-      "hash": "sha256-vidi6Gy39G3pRFxNiatYdKLyXyuC7ckHWhWeEQSJp7Y=",
+      "hash": "sha256-ckcIMJCfg6yroAsBdlAMUD8oDvnCDnbRuASkTEg2uyI=",
       "url": "godot\/HTML5\/index.service.worker.js"
     },
     {
@@ -425,5 +425,5 @@
       "url": "manifest.json"
     }
   ],
-  "version": "r1fMZtaH"
+  "version": "5jQ5yrJr"
 };
