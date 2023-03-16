@@ -14,7 +14,7 @@ public static class NodePath
     public const string Player = "./world/player";
     public const string PlayerCameraPosition = "./camera_position";
     public const string SubPlayer = "./sub_player";
-    public const string ActorDialogManager = "./ActorDialogManager";
+    public const string ActorDialogManager = "/root/ActorDialogManager";
 }
 
 public class AppConstant
