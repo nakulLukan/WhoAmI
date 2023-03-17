@@ -2,6 +2,8 @@ using Godot;
 
 public class GameActionSignal : Node
 {
+    [Signal] public delegate void ActionAreaExit();
+
     [Signal] public delegate void DialogAction(string description);
-    [Signal] public delegate void DialogActionAreaExit();
+    [Signal] public delegate void FootballAction(Vector3 direction, float power);
 }

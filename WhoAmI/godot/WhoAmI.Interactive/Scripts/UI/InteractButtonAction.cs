@@ -7,10 +7,12 @@ public class InteractButtonAction : Button
     public override void _Ready()
     {
         this.GetGameActionSignal()
+            .Connect(nameof(GameActionSignal.ActionAreaExit), this, nameof(OnActionAreaExit));
+
+        this.GetGameActionSignal()
             .Connect(nameof(GameActionSignal.DialogAction), this, nameof(OnDialogRecieved));
         this.GetGameActionSignal()
-            .Connect(nameof(GameActionSignal.DialogActionAreaExit), this, nameof(OnDialogAreaExit));
-            
+            .Connect(nameof(GameActionSignal.FootballAction), this, nameof(OnFootballKickRecieved));
     }
 
     public void OnDialogRecieved(string description)
@@ -22,7 +24,17 @@ public class InteractButtonAction : Button
         };
     }
 
-    void OnDialogAreaExit(){
+    public void OnFootballKickRecieved(Vector3 kickDirection, float power)
+    {
+        this.Visible = true;
+        OnInteractPressAction = () =>
+        {
+            this.GetUIControlSignal().EmitSignal(nameof(UIControlSignal.PlayerFootballKicked), kickDirection, power);
+        };
+    }
+
+    void OnActionAreaExit()
+    {
         this.Visible = false;
     }
 

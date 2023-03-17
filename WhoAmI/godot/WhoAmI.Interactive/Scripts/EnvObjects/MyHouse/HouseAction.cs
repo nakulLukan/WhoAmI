@@ -24,6 +24,6 @@ public class HouseAction : Area
             return;
         }
 
-        _gameActionSignal.EmitSignal(nameof(GameActionSignal.DialogActionAreaExit));
+        _gameActionSignal.EmitSignal(nameof(GameActionSignal.ActionAreaExit));
     }   
 }
