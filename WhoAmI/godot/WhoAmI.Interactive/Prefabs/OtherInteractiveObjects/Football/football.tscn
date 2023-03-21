@@ -28,7 +28,7 @@ surfaces/0 = {
 radius = 0.48
 
 [sub_resource type="SphereShape" id=3]
-radius = 0.7
+radius = 2.0
 
 [node name="football" type="RigidBody"]
 input_ray_pickable = false

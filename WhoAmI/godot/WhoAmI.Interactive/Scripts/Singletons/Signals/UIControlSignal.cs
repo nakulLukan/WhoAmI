@@ -4,5 +4,5 @@ public class UIControlSignal : Node
 {
     public const string Signal = "PlayerDialog";
     [Signal] public delegate void PlayerDialog(string dialogText);
-    [Signal] public delegate void PlayerFootballKicked(Vector3 direction, float power);
+    [Signal] public delegate void PlayerFootballKicked();
 }

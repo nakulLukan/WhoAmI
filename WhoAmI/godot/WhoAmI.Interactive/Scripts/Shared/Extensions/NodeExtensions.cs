@@ -17,5 +17,12 @@ namespace WhoAmI.Interactive.Scripts.Shared.Extensions
         {
             return node.GetNode<Spatial>(NodePath.GravityPoint);
         }
+
+        public static KinematicBody GetPlayer(this Node node){
+            return node.GetNode<KinematicBody>(NodePath.Player);
+        }
+        public static Spatial GetSubPlayer(this Node node){
+            return node.GetNode<Spatial>(NodePath.SubPlayer);
+        }
     }
 }

@@ -4,6 +4,20 @@ using System;
 public class InteractButtonAction : Button
 {
     Action OnInteractPressAction;
+    public override void _Input(InputEvent @event)
+    {
+        if (!IsInteractable)
+        {
+            return;
+        }
+        if (Input.IsActionJustReleased(InputMapAcitionName.Interact))
+        {
+            OnInteractPressed();
+        }
+    }
+
+    bool IsInteractable => this.Visible;
+
     public override void _Ready()
     {
         this.GetGameActionSignal()
@@ -24,12 +38,12 @@ public class InteractButtonAction : Button
         };
     }
 
-    public void OnFootballKickRecieved(Vector3 kickDirection, float power)
+    public void OnFootballKickRecieved()
     {
         this.Visible = true;
         OnInteractPressAction = () =>
         {
-            this.GetUIControlSignal().EmitSignal(nameof(UIControlSignal.PlayerFootballKicked), kickDirection, power);
+            this.GetUIControlSignal().EmitSignal(nameof(UIControlSignal.PlayerFootballKicked));
         };
     }
 
