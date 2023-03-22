@@ -33,9 +33,10 @@ public class FootballAction : RigidBody
         _gameActionSignal.EmitSignal(nameof(GameActionSignal.ActionAreaExit));
     }
 
-    public void OnKick()
+    public void OnKick(int magnitude)
     {
-        var direction = _subPlayer.GlobalTransform.basis.z.Normalized();
+        var normalisedPower = Power * (System.Math.Min(100F, magnitude) / 10000);
+        var direction = _subPlayer.GlobalTransform.basis.z.Normalized() * normalisedPower;
         this.ApplyImpulse(Vector3.Zero, direction * Power);
     }
 }

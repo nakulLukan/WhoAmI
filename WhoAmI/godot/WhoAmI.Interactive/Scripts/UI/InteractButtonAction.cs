@@ -3,16 +3,24 @@ using System;
 
 public class InteractButtonAction : Button
 {
-    Action OnInteractPressAction;
+    Action<int> OnInteractPressAction;
+
+    DateTimeOffset interactDuration;
     public override void _Input(InputEvent @event)
     {
         if (!IsInteractable)
         {
             return;
         }
-        if (Input.IsActionJustReleased(InputMapAcitionName.Interact))
+        
+        if (Input.IsActionJustPressed(InputMapAcitionName.Interact))
         {
             OnInteractPressed();
+        }
+
+        if (Input.IsActionJustReleased(InputMapAcitionName.Interact))
+        {
+            OnInteractReleased();
         }
     }
 
@@ -32,7 +40,7 @@ public class InteractButtonAction : Button
     public void OnDialogRecieved(string description)
     {
         this.Visible = true;
-        OnInteractPressAction = () =>
+        OnInteractPressAction = (magnitude) =>
         {
             this.GetUIControlSignal().EmitSignal(nameof(UIControlSignal.PlayerDialog), description);
         };
@@ -41,9 +49,9 @@ public class InteractButtonAction : Button
     public void OnFootballKickRecieved()
     {
         this.Visible = true;
-        OnInteractPressAction = () =>
+        OnInteractPressAction = (magnitude) =>
         {
-            this.GetUIControlSignal().EmitSignal(nameof(UIControlSignal.PlayerFootballKicked));
+            this.GetUIControlSignal().EmitSignal(nameof(UIControlSignal.PlayerFootballKicked), magnitude);
         };
     }
 
@@ -52,11 +60,20 @@ public class InteractButtonAction : Button
         this.Visible = false;
     }
 
-    public void OnInteractPressed()
+    void OnInteractPressed()
     {
         if (OnInteractPressAction != null)
         {
-            OnInteractPressAction();
+            interactDuration = DateTimeOffset.UtcNow;
+        }
+    }
+
+    void OnInteractReleased()
+    {
+        if (OnInteractPressAction != null)
+        {
+            var diff = (int)((((float)(DateTimeOffset.UtcNow - interactDuration).TotalMilliseconds) / 1000) * 100);
+            OnInteractPressAction(diff);
         }
 
         Visible = false;

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Models/Mountains/SnowMountain/Material.material" type="Material" id=1]
 [ext_resource path="res://Prefabs/GameAction/action_area.tscn" type="PackedScene" id=2]
+[ext_resource path="res://StaticAssets/SoundTracks/mountain.mp3" type="AudioStream" id=3]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "snow_mountain_Plane001"
@@ -39,3 +40,7 @@ Description = "MountainIntro"
 
 [node name="CollisionShape" type="CollisionShape" parent="action_area"]
 shape = SubResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
