@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Models/Mountains/SnowMountain/Material.material" type="Material" id=1]
 [ext_resource path="res://Prefabs/GameAction/action_area.tscn" type="PackedScene" id=2]
-[ext_resource path="res://StaticAssets/SoundTracks/mountain.mp3" type="AudioStream" id=3]
+[ext_resource path="res://Prefabs/Mountains/SnowMountain/action_collision_area.tscn" type="PackedScene" id=3]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "snow_mountain_Plane001"
@@ -22,9 +22,6 @@ surfaces/0 = {
 [sub_resource type="ConvexPolygonShape" id=2]
 points = PoolVector3Array( 0.491075, -0.783863, -1.96667, 0.010216, 0.0911277, -1.48405, 1.74356, -0.783863, -1.77462, -0.832256, -0.783863, -1.91722, -0.90543, -0.00629079, -1.53542, 0.915408, 0.0211082, -1.38937, -0.297193, 1.14903, -0.661037, 1.37691, 0.00132, -1.15822, 1.95804, -0.783863, -1.41697, -1.86715, -0.783863, -1.821, -1.39365, 0.00132, -1.38937, 0.420998, 1.29288, -0.207938, -0.649127, 1.36746, 0.072278, 0.0740981, 1.80762, 0.429544, 0.861205, 1.21956, -0.00668836, 1.94953, -0.783863, 1.92416, 1.55307, 0.04115, -0.407654, -1.91942, -0.783863, -1.27935, -1.41997, 0.202753, 0.408077, -1.99724, -0.783863, 1.39631, -1.39365, 0.00132, 1.38136, 0.00673151, 1.75587, 1.11533, -0.0180471, -0.783863, 1.94946, -1.98291, -0.783863, -0.0515382, -1.99336, -0.783863, 0.552977, -1.82417, -0.783863, 1.79881, -0.991381, -0.783863, 1.91036 )
 
-[sub_resource type="BoxShape" id=3]
-extents = Vector3( 5.40981, 2.39457, 5.71299 )
-
 [node name="StaticBody" type="StaticBody"]
 
 [node name="SnowMountain" type="MeshInstance" parent="."]
@@ -35,12 +32,8 @@ mesh = SubResource( 1 )
 transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, -0.00237155, -0.469288, 0.0266559 )
 shape = SubResource( 2 )
 
-[node name="action_area" parent="." instance=ExtResource( 2 )]
+[node name="dialog_action_area" parent="." instance=ExtResource( 2 )]
+monitorable = false
 Description = "MountainIntro"
 
-[node name="CollisionShape" type="CollisionShape" parent="action_area"]
-shape = SubResource( 3 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
-autoplay = true
+[node name="action_collision_area" parent="dialog_action_area" instance=ExtResource( 3 )]

@@ -16,7 +16,7 @@ public class PlayerDialog : Control
     bool IsOpen() => Visible;
     public override void _Ready()
     {
-        this.GetUIControlSignal().Connect(nameof(UIControlSignal.PlayerDialog), this, nameof(OnDialogTextRecieved));
+        this.GetGameActionSignal().Connect(nameof(GameActionSignal.SubTitleDialog), this, nameof(OnDialogTextRecieved));
         _colorRect = GetChild<ColorRect>(0);
         _dialogText = _colorRect.GetChild<RichTextLabel>(0);
         _animationPlayer = GetNode<AnimationPlayer>("./AnimationPlayer");
@@ -25,7 +25,6 @@ public class PlayerDialog : Control
         _dialogManager = GetNode<ActorDialogManager>(NodePath.ActorDialogManager);
         _dialogText.BbcodeEnabled = false;
         Visible = false;
-
     }
 
     public void OnDialogTextRecieved(string dialogText)

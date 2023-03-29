@@ -1,17 +1,16 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Player/PlayerNavigation.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/Camera/PlayerLookAt.cs" type="Script" id=2]
 [ext_resource path="res://Prefabs/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://world_environment.tres" type="Environment" id=4]
-[ext_resource path="res://Prefabs/gravity_component.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/Planets/moon.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Prefabs/Planets/cloud_1.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Prefabs/Buildings/my_house.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/Player/DialogAction.cs" type="Script" id=9]
 [ext_resource path="res://Prefabs/UIControls/Dialog.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Prefabs/UIControls/InteractButton.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Prefabs/Mountains/snow_mountain.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Prefabs/Mountains/SnowMountain/snow_mountain.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Prefabs/OtherInteractiveObjects/Football/football.tscn" type="PackedScene" id=13]
 
 [sub_resource type="CapsuleShape" id=11]
@@ -19,13 +18,6 @@ radius = 0.5
 height = 3.0
 
 [sub_resource type="CylinderMesh" id=7]
-
-[sub_resource type="PhysicsMaterial" id=12]
-rough = true
-
-[sub_resource type="BoxShape" id=9]
-
-[sub_resource type="CubeMesh" id=10]
 
 [node name="world" type="Spatial"]
 
@@ -72,38 +64,23 @@ light_energy = 2.0
 spot_range = 88.652
 spot_angle = 180.0
 
-[node name="box" type="RigidBody" parent="."]
-pause_mode = 1
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.7077, 0, 0 )
-visible = false
-mass = 100.0
-physics_material_override = SubResource( 12 )
-gravity_scale = 0.0
-angular_damp = 1.0
-
-[node name="CollisionShape" type="CollisionShape" parent="box"]
-shape = SubResource( 9 )
-
-[node name="CSGMesh" type="CSGMesh" parent="box/CollisionShape"]
-mesh = SubResource( 10 )
-
-[node name="gravity_component" parent="box" instance=ExtResource( 5 )]
-BodyMass = 10000.0
-
 [node name="world_static_objects" type="Node" parent="."]
 
 [node name="clouds" type="Node" parent="world_static_objects"]
 
 [node name="cloud_1" parent="world_static_objects/clouds" instance=ExtResource( 7 )]
 transform = Transform( 19.2559, 5.38949, -0.405363, -5.30821, 18.5766, -5.17028, -1.01674, 5.0855, 19.3159, 7.02129, 28.26, 1.92624 )
+visible = false
 skeleton = NodePath("../..")
 
 [node name="cloud_2" parent="world_static_objects/clouds" instance=ExtResource( 7 )]
 transform = Transform( 20, 0, 0, 0, 19.6833, 3.54502, 0, -3.54502, 19.6833, 0.630085, 31.1602, -6.09926 )
+visible = false
 skeleton = NodePath("../..")
 
 [node name="cloud_3" parent="world_static_objects/clouds" instance=ExtResource( 7 )]
 transform = Transform( 18.9813, 6.29404, -0.308741, 6.30021, -18.9337, 1.35054, 0.132738, -1.37901, -19.952, -5.00532, 29.1572, 0.250427 )
+visible = false
 skeleton = NodePath("../..")
 
 [node name="houses" type="Node" parent="world_static_objects"]

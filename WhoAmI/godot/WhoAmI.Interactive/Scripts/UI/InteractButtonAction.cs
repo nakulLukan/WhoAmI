@@ -3,9 +3,11 @@ using System;
 
 public class InteractButtonAction : Button
 {
-    Action<int> OnInteractPressAction;
+    Action<Node, int> OnInteractPressAction;
 
     DateTimeOffset interactDuration;
+    Node actionNode;
+    string _actionName = "ExecuteAction";
     public override void _Input(InputEvent @event)
     {
         if (!IsInteractable)
@@ -28,30 +30,46 @@ public class InteractButtonAction : Button
 
     public override void _Ready()
     {
-        this.GetGameActionSignal()
-            .Connect(nameof(GameActionSignal.ActionAreaExit), this, nameof(OnActionAreaExit));
+        this.GetUIControlSignal()
+            .Connect(nameof(UIControlSignal.ActionAreaExit), this, nameof(OnActionAreaExit));
 
-        this.GetGameActionSignal()
-            .Connect(nameof(GameActionSignal.DialogAction), this, nameof(OnDialogRecieved));
-        this.GetGameActionSignal()
-            .Connect(nameof(GameActionSignal.FootballAction), this, nameof(OnFootballKickRecieved));
+        this.GetUIControlSignal()
+            .Connect(nameof(UIControlSignal.PlayerDialogEntered), this, nameof(OnDialogRecieved));
+        this.GetUIControlSignal()
+            .Connect(nameof(UIControlSignal.PlayerFootballEntered), this, nameof(OnFootballKickRecieved));
+        this.GetUIControlSignal()
+            .Connect(nameof(UIControlSignal.SoundTrackEntered), this, nameof(OnSoundTrackActionRecieved));
     }
 
-    public void OnDialogRecieved(string description)
-    {
+    void OnActionAreaEntered(Node actionNode){
         this.Visible = true;
-        OnInteractPressAction = (magnitude) =>
+        this.actionNode = actionNode;
+    }
+
+    public void OnDialogRecieved(Node actionNode)
+    {
+        OnActionAreaEntered(actionNode);
+        OnInteractPressAction = (node, magnitude) =>
         {
-            this.GetUIControlSignal().EmitSignal(nameof(UIControlSignal.PlayerDialog), description);
+            node.EmitSignal(_actionName);
         };
     }
 
-    public void OnFootballKickRecieved()
+    public void OnFootballKickRecieved(Node actionNode)
     {
-        this.Visible = true;
-        OnInteractPressAction = (magnitude) =>
+        OnActionAreaEntered(actionNode);
+        OnInteractPressAction = (node, magnitude) =>
         {
-            this.GetUIControlSignal().EmitSignal(nameof(UIControlSignal.PlayerFootballKicked), magnitude);
+            node.EmitSignal(_actionName, magnitude);
+        };
+    }
+
+    public void OnSoundTrackActionRecieved(Node actionNode)
+    {
+        OnActionAreaEntered(actionNode);
+        OnInteractPressAction = (node, magnitude) =>
+        {
+            node.EmitSignal(_actionName);
         };
     }
 
@@ -73,7 +91,7 @@ public class InteractButtonAction : Button
         if (OnInteractPressAction != null)
         {
             var diff = (int)((((float)(DateTimeOffset.UtcNow - interactDuration).TotalMilliseconds) / 1000) * 100);
-            OnInteractPressAction(diff);
+            OnInteractPressAction(actionNode, diff);
         }
 
         Visible = false;

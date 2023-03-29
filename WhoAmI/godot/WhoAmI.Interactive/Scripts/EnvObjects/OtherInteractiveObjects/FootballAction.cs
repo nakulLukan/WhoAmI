@@ -3,13 +3,13 @@ using WhoAmI.Interactive.Scripts.Shared.Extensions;
 public class FootballAction : RigidBody
 {
     [Export] public float Power { get; set; }
-
-    GameActionSignal _gameActionSignal = null;
+    [Signal] delegate void ExecuteAction();
+    UIControlSignal _gameActionSignal = null;
     Spatial _subPlayer = null;
     public override void _Ready()
     {
-        this.GetUIControlSignal().Connect(nameof(UIControlSignal.PlayerFootballKicked), this, nameof(OnKick));
-        _gameActionSignal = this.GetGameActionSignal();
+        this.Connect(nameof(ExecuteAction), this, nameof(OnKick));
+        _gameActionSignal = this.GetUIControlSignal();
         _subPlayer = this.GetPlayer().GetSubPlayer();
     }
 
@@ -20,7 +20,7 @@ public class FootballAction : RigidBody
             return;
         }
 
-        _gameActionSignal.EmitSignal(nameof(GameActionSignal.FootballAction));
+        _gameActionSignal.EmitSignal(nameof(UIControlSignal.PlayerFootballEntered), this);
     }
 
     public void OnActionAreaExit(Node body)
@@ -30,7 +30,7 @@ public class FootballAction : RigidBody
             return;
         }
 
-        _gameActionSignal.EmitSignal(nameof(GameActionSignal.ActionAreaExit));
+        _gameActionSignal.EmitSignal(nameof(UIControlSignal.ActionAreaExit));
     }
 
     public void OnKick(int magnitude)
