@@ -34,42 +34,16 @@ public class InteractButtonAction : Button
             .Connect(nameof(UIControlSignal.ActionAreaExit), this, nameof(OnActionAreaExit));
 
         this.GetUIControlSignal()
-            .Connect(nameof(UIControlSignal.PlayerDialogEntered), this, nameof(OnDialogRecieved));
-        this.GetUIControlSignal()
-            .Connect(nameof(UIControlSignal.PlayerFootballEntered), this, nameof(OnFootballKickRecieved));
-        this.GetUIControlSignal()
-            .Connect(nameof(UIControlSignal.SoundTrackEntered), this, nameof(OnSoundTrackActionRecieved));
+            .Connect(nameof(UIControlSignal.ActionAreaEntered), this, nameof(OnActionAreaEntered));
     }
 
-    void OnActionAreaEntered(Node actionNode){
-        this.Visible = true;
+    public void OnActionAreaEntered(Node actionNode)
+    {
+         this.Visible = true;
         this.actionNode = actionNode;
-    }
-
-    public void OnDialogRecieved(Node actionNode)
-    {
-        OnActionAreaEntered(actionNode);
-        OnInteractPressAction = (node, magnitude) =>
-        {
-            node.EmitSignal(_actionName);
-        };
-    }
-
-    public void OnFootballKickRecieved(Node actionNode)
-    {
-        OnActionAreaEntered(actionNode);
         OnInteractPressAction = (node, magnitude) =>
         {
             node.EmitSignal(_actionName, magnitude);
-        };
-    }
-
-    public void OnSoundTrackActionRecieved(Node actionNode)
-    {
-        OnActionAreaEntered(actionNode);
-        OnInteractPressAction = (node, magnitude) =>
-        {
-            node.EmitSignal(_actionName);
         };
     }
 

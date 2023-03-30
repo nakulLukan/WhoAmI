@@ -3,7 +3,7 @@ using Godot;
 public class SoundTrackAreaAction : Area
 {
     [Export] public string SoundTrackPath { get; set; } = "";
-    [Signal] delegate void ExecuteAction();
+    [Signal] delegate void ExecuteAction(int magnitude);
 
     UIControlSignal _gameActionSignal;
     AudioStreamPlayer streamPlayer = null;
@@ -13,7 +13,7 @@ public class SoundTrackAreaAction : Area
         _gameActionSignal.Connect(nameof(ExecuteAction), this, nameof(OnSoundTrackSelected));
     }
 
-    void OnSoundTrackSelected()
+    void OnSoundTrackSelected(int magnitude)
     {
         if (!IsInstanceValid(streamPlayer))
         {
@@ -24,7 +24,7 @@ public class SoundTrackAreaAction : Area
             {
                 audioStream.Loop = false;
             }
-            streamPlayer.Connect("finished", this, nameof(PlaybackFinished));
+            streamPlayer.Connect(Signals.AudioStreamFinished, this, nameof(PlaybackFinished));
         }
 
         streamPlayer.Play();
@@ -47,7 +47,7 @@ public class SoundTrackAreaAction : Area
             return;
         }
 
-        _gameActionSignal.EmitSignal(nameof(UIControlSignal.SoundTrackEntered));
+        _gameActionSignal.EmitSignal(nameof(UIControlSignal.ActionAreaEntered));
     }
 
     public void OnActionAreaExit(Node body)

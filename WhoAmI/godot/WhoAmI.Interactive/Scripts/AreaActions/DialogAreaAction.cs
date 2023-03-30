@@ -10,7 +10,7 @@ public class DialogAreaAction : Area
         this.Connect(nameof(ExecuteAction), this, nameof(OnDialogActionRecieved));
     }
 
-    void OnDialogActionRecieved()
+    void OnDialogActionRecieved(int magnitude)
     {
         this.GetGameActionSignal().EmitSignal(nameof(GameActionSignal.SubTitleDialog), Description);
     }
@@ -22,7 +22,7 @@ public class DialogAreaAction : Area
             return;
         }
 
-        _uiControlSignal.EmitSignal(nameof(UIControlSignal.PlayerDialogEntered), this);
+        _uiControlSignal.EmitSignal(nameof(UIControlSignal.ActionAreaEntered), this);
     }   
 
     public void OnActionAreaExit(Node body)

@@ -3,7 +3,7 @@ using WhoAmI.Interactive.Scripts.Shared.Extensions;
 public class FootballAction : RigidBody
 {
     [Export] public float Power { get; set; }
-    [Signal] delegate void ExecuteAction();
+    [Signal] delegate void ExecuteAction(int magnitude);
     UIControlSignal _gameActionSignal = null;
     Spatial _subPlayer = null;
     public override void _Ready()
@@ -20,7 +20,7 @@ public class FootballAction : RigidBody
             return;
         }
 
-        _gameActionSignal.EmitSignal(nameof(UIControlSignal.PlayerFootballEntered), this);
+        _gameActionSignal.EmitSignal(nameof(UIControlSignal.ActionAreaEntered), this);
     }
 
     public void OnActionAreaExit(Node body)
