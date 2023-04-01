@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using WhoAmI.Interactive.Scripts.Shared.Extensions;
 
 public class GravitationalForce : Node
 {

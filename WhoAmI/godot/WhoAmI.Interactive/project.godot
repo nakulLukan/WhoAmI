@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 UIControlSignal="*res://Scripts/Singletons/Signals/UIControlSignal.cs"
 ActorDialogManager="*res://Scripts/Data/ActorDialogManager.cs"
 GameActionSignal="*res://Scripts/Singletons/Signals/GameActionSignal.cs"
+AudioStreamProvider="*res://Scripts/Singletons/AudioStreamProvider.cs"
 
 [global]
 

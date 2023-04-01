@@ -1,5 +1,4 @@
 using Godot;
-using WhoAmI.Interactive.Scripts.Shared.Extensions;
 public class FootballAction : RigidBody
 {
     [Export] public float Power { get; set; }
