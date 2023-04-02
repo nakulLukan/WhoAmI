@@ -86,7 +86,7 @@ skeleton = NodePath("../..")
 [node name="houses" type="Node" parent="world_static_objects"]
 
 [node name="my_house" parent="world_static_objects/houses" instance=ExtResource( 8 )]
-transform = Transform( 3.62133, 1.6928, 0.142922, -1.69882, 3.60849, 0.304662, 0, -0.33652, 3.98582, 9.57039, 19.5475, -0.0106296 )
+transform = Transform( -3.587, 1.77, -0.0239643, 1.76812, 3.58514, 0.143243, 0.0848639, 0.11786, -3.99736, 9.57039, 19.5475, -0.0106296 )
 
 [node name="mountains" type="Node" parent="world_static_objects"]
 
