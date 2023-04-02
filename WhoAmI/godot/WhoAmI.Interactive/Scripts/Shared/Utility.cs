@@ -11,4 +11,8 @@ public static class Utility{
     public static void PrintPretty(object input){
         System.Diagnostics.Debug.Print(Newtonsoft.Json.JsonConvert.SerializeObject(input.ToString(), Newtonsoft.Json.Formatting.Indented));
     }
+
+    public static float ToDecibels(float factor){
+        return 10 * Godot.Mathf.Log(factor);
+    }
 }

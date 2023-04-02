@@ -14,6 +14,7 @@ public class AudioStreamProvider : Node
         if (!IsInstanceValid(streamPlayer))
         {
             streamPlayer = new AudioStreamPlayer();
+            streamPlayer.VolumeDb = Utility.ToDecibels(0.4F);
             this.AddChild(streamPlayer);
             streamPlayer.Stream = Godot.ResourceLoader.Load<AudioStream>(audioStreamResPath);
             if (streamPlayer.Stream is AudioStreamMP3 audioStream)
