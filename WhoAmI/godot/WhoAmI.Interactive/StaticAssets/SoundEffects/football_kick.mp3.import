@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/football_kick.mp3-de24b078518aab107dd12cb4551a05ae.mp3str"
+
+[deps]
+
+source_file="res://StaticAssets/SoundEffects/football_kick.mp3"
+dest_files=[ "res://.import/football_kick.mp3-de24b078518aab107dd12cb4551a05ae.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

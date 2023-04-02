@@ -1,14 +1,19 @@
 using Godot;
 public class GuiAreaAction : Node
-{   
+{
     UIControlSignal _uiControlSignal;
-    Node _parent;
+
+    /// <summary>
+    /// The parent node will be used by default if not assigned.
+    /// </summary>
+    [Export] public Godot.NodePath _parentNode { get; set; }
+    Node _parent { get; set; }
     public override void _Ready()
     {
         _uiControlSignal = this.GetUIControlSignal();
-        _parent = (Node)this.GetParent();
-        _parent.Connect(Signals.AreaBodyEntered, this, nameof(OnActionAreaEntered));
-        _parent.Connect(Signals.AreaBodyExited, this, nameof(OnActionAreaExit));
+        _parent = _parentNode != null ? GetNode(_parentNode) : this.GetParent();
+        GetParent().Connect(Signals.AreaBodyEntered, this, nameof(OnActionAreaEntered));
+        GetParent().Connect(Signals.AreaBodyExited, this, nameof(OnActionAreaExit));
     }
 
     public void OnActionAreaEntered(Node body)
@@ -19,7 +24,7 @@ public class GuiAreaAction : Node
         }
 
         _uiControlSignal.EmitSignal(nameof(UIControlSignal.ActionAreaEntered), _parent);
-    }   
+    }
 
     public void OnActionAreaExit(Node body)
     {
@@ -29,5 +34,5 @@ public class GuiAreaAction : Node
         }
 
         _uiControlSignal.EmitSignal(nameof(UIControlSignal.ActionAreaExit));
-    }   
+    }
 }

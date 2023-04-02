@@ -11,22 +11,14 @@ public static class NodeExtensions
         return http;
     }
 
-    public static Spatial GetGravityPoint(this Node node)
-    {
-        return node.GetNode<Spatial>(NodePath.GravityPoint);
-    }
+    public static Spatial GetGravityPoint(this Node node) => node.GetNode<Spatial>(NodePath.GravityPoint);
 
-    public static KinematicBody GetPlayer(this Node node)
-    {
-        return node.GetNode<KinematicBody>(NodePath.Player);
-    }
-    public static Spatial GetSubPlayer(this Node node)
-    {
-        return node.GetNode<Spatial>(NodePath.SubPlayer);
-    }
+    public static KinematicBody GetPlayer(this Node node) => node.GetNode<KinematicBody>(NodePath.Player);
+    public static Spatial GetSubPlayer(this Node node) => node.GetNode<Spatial>(NodePath.SubPlayer);
 
-    public static AudioStreamProvider GetAudioStreamProvider(this Node node)
-    {
-        return node.GetNode<AudioStreamProvider>("/root/AudioStreamProvider");
-    }
+    public static AudioStreamProvider GetAudioStreamProvider(this Node node) => 
+        node.GetNode<AudioStreamProvider>("/root/AudioStreamProvider");
+
+    public static SoundEffectStreamProvider GetSoundEffectStreamProvider(this Node node)
+        => node.GetNode<SoundEffectStreamProvider>("/root/SoundEffectStreamProvider");
 }
