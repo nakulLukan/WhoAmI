@@ -4,8 +4,8 @@
 [ext_resource path="res://Scripts/EnvObjects/MyHouseAreaAction.cs" type="Script" id=2]
 [ext_resource path="res://Models/Building/MyHouse/my_house.glb" type="PackedScene" id=3]
 
-[sub_resource type="ConvexPolygonShape" id=4]
-points = PoolVector3Array( -0.24508, -0.457939, -1.06132, -0.290727, 0.0411451, -0.634163, -0.24508, -0.294371, -1.06132, 0.245024, -0.457939, -1.06132, -0.24508, -0.457939, -7.35521e-05, -0.290727, 0.107516, -0.634163, -0.290727, 0.0411451, 0.0335499, 0, 0.526165, -0.643677, 0.245024, -0.294371, -1.06132, 0.290727, 0.0411451, -0.634163, 0.245024, -0.457939, -7.35521e-05, -0.0612986, -0.457939, 0.0340905, -0.24508, 0.0401818, 0.0431721, -0.290727, 0.107516, 0.0335499, 0.14081, 0.505262, -0.545293, 0, 0.526165, 0.0431721, 0.290727, 0.107516, -0.634163, 0.290727, 0.0411451, 0.0335499, 0.245024, 0.0401818, 0.0431721, 0.0612417, -0.457939, 0.0340905, -0.24508, 0.10848, 0.0431721, 0.14081, 0.505262, -0.507021, 0.245024, 0.10848, 0.0431721, 0.290727, 0.107516, 0.0335499 )
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 0.524777, 0.528656, 0.340598 )
 
 [sub_resource type="BoxShape" id=5]
 extents = Vector3( 0.409102, 0.436451, 0.688274 )
@@ -16,7 +16,8 @@ input_ray_pickable = false
 [node name="my_house" parent="." instance=ExtResource( 3 )]
 
 [node name="house_mesh_collision" type="CollisionShape" parent="."]
-shape = SubResource( 4 )
+transform = Transform( 0.538, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.047719, -0.310174 )
+shape = SubResource( 6 )
 
 [node name="action_area" type="Area" parent="."]
 monitorable = false

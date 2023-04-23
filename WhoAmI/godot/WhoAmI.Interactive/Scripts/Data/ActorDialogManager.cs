@@ -22,7 +22,8 @@ namespace WhoAmI.Data
             {
                 return Dialogs[key];
             }
-            throw new System.Exception($"Unknown dialog key '{key}'.");
+            
+            return "ERROR: MESSAGE NOT CONFIGURED";
         }
     }
 }

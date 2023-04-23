@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Player/PlayerNavigation.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/Camera/PlayerLookAt.cs" type="Script" id=2]
 [ext_resource path="res://Prefabs/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://world_environment.tres" type="Environment" id=4]
+[ext_resource path="res://Prefabs/Projects/IrrigationSystem.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/Planets/moon.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Prefabs/Planets/cloud_1.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Prefabs/Buildings/my_house.tscn" type="PackedScene" id=8]
@@ -58,7 +59,7 @@ CamFollowSpeed = 10.0
 environment = ExtResource( 4 )
 
 [node name="light" type="SpotLight" parent="."]
-transform = Transform( 0.949972, 1.41557e-08, 0.312335, -0.164823, 0.849423, 0.501312, -0.265305, -0.527712, 0.806928, 9.14279, 39.2541, 30.9919 )
+transform = Transform( 0.949972, -1.84024e-07, 0.312335, -0.164823, 0.849423, 0.501312, -0.265305, -0.527712, 0.806928, 9.14279, 39.2541, 30.9919 )
 visible = false
 light_energy = 2.0
 spot_range = 88.652
@@ -92,6 +93,11 @@ transform = Transform( -3.587, 1.77, -0.0239643, 1.76812, 3.58514, 0.143243, 0.0
 
 [node name="snow_mountain" parent="world_static_objects/mountains" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21, 0 )
+
+[node name="projects" type="Node" parent="world_static_objects"]
+
+[node name="irrigation_system" parent="world_static_objects/projects" instance=ExtResource( 5 )]
+transform = Transform( -4.27654e-08, -0.999975, -0.00705053, -4.37132e-08, 0.00705053, -0.999975, 1, -4.24561e-08, -4.40136e-08, -20.4035, -2.54436e-08, 5.22306e-09 )
 
 [node name="ui" type="Node" parent="."]
 
