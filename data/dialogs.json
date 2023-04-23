@@ -1,4 +1,5 @@
 {
     "HouseIntro": "I live in a beautiful place in Kerala, India.\nAt present, I am working from my home.",
-    "MountainIntro": "I love mountains.\nRecently I went to Kashmir to explore the mesmarizing view of the Himalayas."
+    "MountainIntro": "I love mountains.\nRecently I went to Kashmir to explore the mesmarizing view of the Himalayas.",
+	"IrrigationProjectDescription": "An irrigation system has been designed to supply water to 3 acres of land at the required intervals. The entire process is automated using a Raspberry Pi, Modbus controller, and solenoid valves. A web application has been built using Node-RED, which provides an interface to interact with the system. The user can configure the timings of each solenoid valve for irrigation through the application, and the Pi will take responsibility for commanding the Modbus to trigger the valves when the configured time is reached."
 }
