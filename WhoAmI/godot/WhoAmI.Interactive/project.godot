@@ -22,10 +22,6 @@ GameActionSignal="*res://Scripts/Singletons/Signals/GameActionSignal.cs"
 AudioStreamProvider="*res://Scripts/Singletons/AudioStreamProvider.cs"
 SoundEffectStreamProvider="*res://Scripts/Singletons/SoundEffectStreamProvider.cs"
 
-[debug]
-
-settings/stdout/print_fps=true
-
 [global]
 
 depth=false

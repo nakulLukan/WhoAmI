@@ -38,7 +38,7 @@ mass = 500.0
 physics_material_override = SubResource( 4 )
 gravity_scale = 0.0
 script = ExtResource( 3 )
-Power = 1500.0
+Power = 100.0
 KickSound = ExtResource( 5 )
 
 [node name="Football" type="MeshInstance" parent="."]

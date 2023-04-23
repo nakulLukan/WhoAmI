@@ -32,7 +32,7 @@ public class PlayerNavigation : KinematicBody
         var direction = gravity.GlobalTransform.origin - GlobalTransform.origin;
 
         // Add gravitational force
-        var gravityForce = this.CalculateGravity(BodyMass, gravity.GlobalTransform.origin, GameConstant.EarthMass);
+        var gravityForce = this.CalculateGravity(BodyMass, gravity.GlobalTransform.origin, GameConstant.EarthMass) / 10000;
         MoveAndCollide(direction * delta * gravityForce);
 
         // Rotate the body normal to the earth surface

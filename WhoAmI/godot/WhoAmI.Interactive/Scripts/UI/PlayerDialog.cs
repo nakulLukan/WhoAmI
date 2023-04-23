@@ -13,6 +13,8 @@ public class PlayerDialog : Control
     Timer _timer = null;
     ActorDialogManager _dialogManager = null; 
 
+    string fadeInAnimationName = "SlideIn";
+    string fadeOutAnimationName = "SlideOut";
     bool IsOpen() => Visible;
     public override void _Ready()
     {
@@ -32,19 +34,11 @@ public class PlayerDialog : Control
         OpenDialogMessagePanel(dialogText);
     }
 
-    public override void _GuiInput(InputEvent @event)
+    public override void _Input(InputEvent @event)
     {
-        if (@event is InputEventMouseButton mouseButtonEvent && !@event.IsPressed())
+        if (IsOpen() && Input.IsActionJustPressed(InputMapAcitionName.Interact))
         {
-            switch ((ButtonList)mouseButtonEvent.ButtonIndex)
-            {
-                case ButtonList.Left:
-                    if (IsOpen())
-                    {
-                        CloseDialogMessagePanel();
-                    }
-                    break;
-            }
+            CloseDialogMessagePanel();
         }
     }
 
@@ -54,15 +48,15 @@ public class PlayerDialog : Control
         _dialogText.VisibleCharacters = 0;
         _timer.Start();
 
-        if (!IsOpen())
+        if (!IsOpen() || _animationPlayer.CurrentAnimation == fadeOutAnimationName)
         {
-            _animationPlayer.Play("SlideIn");
+            _animationPlayer.Play(fadeInAnimationName);
         }
     }
 
     void CloseDialogMessagePanel()
     {
-        _animationPlayer.Play("SlideOut");
+        _animationPlayer.Play(fadeOutAnimationName);
         _dialogText.Text = string.Empty;
         _timer.Stop();
     }

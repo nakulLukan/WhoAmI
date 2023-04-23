@@ -14,7 +14,7 @@ public class FootballAction : RigidBody
 
     public void OnKick(int magnitude)
     {
-        var normalisedPower = Power * (System.Math.Min(100F, magnitude) / 10000);
+        var normalisedPower = Power ;//* (System.Math.Min(100F, magnitude) / 10000);
         var direction = _subPlayer.GlobalTransform.basis.z.Normalized() * normalisedPower;
         this.ApplyImpulse(Vector3.Zero, direction * Power);
         this.GetSoundEffectStreamProvider()
