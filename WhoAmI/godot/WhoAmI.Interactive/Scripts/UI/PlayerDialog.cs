@@ -1,14 +1,14 @@
 using Godot;
 using WhoAmI.Data;
 
-public class PlayerDialog : Control
+public class PlayerDialog : Panel
 {
     [Export] public bool ShowDialogInitially { get; set; }
     [Export] public float CharacterDelay { get; set; } = 0.05f;
 
     AnimationPlayer _animationPlayer;
 
-    ColorRect _colorRect = null;
+    Panel _colorRect = null;
     RichTextLabel _dialogText = null;
     Timer _timer = null;
     ActorDialogManager _dialogManager = null; 
@@ -16,11 +16,12 @@ public class PlayerDialog : Control
     string fadeInAnimationName = "SlideIn";
     string fadeOutAnimationName = "SlideOut";
     bool IsOpen() => Visible;
+    bool openActionRecieved = false;
     public override void _Ready()
     {
         this.GetGameActionSignal().Connect(nameof(GameActionSignal.SubTitleDialog), this, nameof(OnDialogTextRecieved));
-        _colorRect = GetChild<ColorRect>(0);
-        _dialogText = _colorRect.GetChild<RichTextLabel>(0);
+        _colorRect = this;
+        _dialogText = _colorRect.GetChild<RichTextLabel>(1);
         _animationPlayer = GetNode<AnimationPlayer>("./AnimationPlayer");
         _timer = GetNode<Timer>("./Timer");
         _timer.WaitTime = CharacterDelay;
@@ -36,7 +37,19 @@ public class PlayerDialog : Control
 
     public override void _Input(InputEvent @event)
     {
-        if (IsOpen() && Input.IsActionJustPressed(InputMapAcitionName.Interact))
+        // To close the dialog box when 'e' key is pressed again.
+        if (IsOpen()
+            && @event is InputEventKey inputEventKey 
+            && Input.IsActionJustReleased(InputMapAcitionName.Interact)
+            && _animationPlayer.CurrentAnimation != fadeInAnimationName)
+        {
+            CloseDialogMessagePanel();
+        }
+    }
+
+    public override void _GuiInput(InputEvent @event)
+    {
+        if (IsOpen() && Input.IsActionJustReleased(InputMapAcitionName.Interact))
         {
             CloseDialogMessagePanel();
         }
@@ -44,18 +57,16 @@ public class PlayerDialog : Control
 
     void OpenDialogMessagePanel(string dialogKey)
     {
+        openActionRecieved = true;
         _dialogText.Text = _dialogManager.GetValue(dialogKey);
         _dialogText.VisibleCharacters = 0;
         _timer.Start();
-
-        if (!IsOpen() || _animationPlayer.CurrentAnimation == fadeOutAnimationName)
-        {
-            _animationPlayer.Play(fadeInAnimationName);
-        }
+        _animationPlayer.Play(fadeInAnimationName);
     }
 
     void CloseDialogMessagePanel()
     {
+        openActionRecieved = false;
         _animationPlayer.Play(fadeOutAnimationName);
         _dialogText.Text = string.Empty;
         _timer.Stop();
